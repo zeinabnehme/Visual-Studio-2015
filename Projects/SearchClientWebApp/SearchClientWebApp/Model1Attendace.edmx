@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hrEntityModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="office_id" Type="int" />
+          <Property Name="first_name" Type="varchar" MaxLength="255" />
+          <Property Name="father_name" Type="varchar" MaxLength="255" />
+          <Property Name="mother_name" Type="varchar" MaxLength="255" />
+          <Property Name="last_name" Type="varchar" MaxLength="255" />
+          <Property Name="date_of_birth" Type="date" />
+          <Property Name="spouse_name" Type="varchar" MaxLength="255" />
+          <Property Name="governement_id" Type="varchar" MaxLength="255" />
+          <Property Name="full_name" Type="varchar" MaxLength="255" />
+          <Property Name="arabic_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="timesheetpresent">
+          <Key>
+            <PropertyRef Name="attendanceID" />
+          </Key>
+          <Property Name="attendanceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeID" Type="int" />
+          <Property Name="CalenderID" Type="int" />
+          <Property Name="IsPresent" Type="bit" Nullable="false" />
+          <Property Name="FromTime" Type="time" Precision="0" />
+          <Property Name="ToTime" Type="time" Precision="0" />
+          <Property Name="Reason" Type="int" />
+          <Property Name="Note" Type="varchar" MaxLength="255" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="timesheetreason">
+          <Key>
+            <PropertyRef Name="ReasonId" />
+          </Key>
+          <Property Name="ReasonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReasonName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="timesheetyear2016">
+          <Key>
+            <PropertyRef Name="CalenderID" />
+          </Key>
+          <Property Name="CalenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GlobalDate" Type="date" />
+          <Property Name="DayOfMonthId" Type="int" />
+          <Property Name="DayOfWeekId" Type="int" />
+          <Property Name="DayName" Type="varchar" MaxLength="255" />
+          <Property Name="MonthId" Type="int" />
+          <Property Name="MonthName" Type="varchar" MaxLength="255" />
+          <Property Name="YearId" Type="int" />
+          <Property Name="Isholiday" Type="bit" />
+        </EntityType>
+        <Association Name="calende">
+          <End Role="timesheetyear2016" Type="Self.timesheetyear2016" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="timesheetpresent" Type="Self.timesheetpresent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timesheetyear2016">
+              <PropertyRef Name="CalenderID" />
+            </Principal>
+            <Dependent Role="timesheetpresent">
+              <PropertyRef Name="CalenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employIDD">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="timesheetpresent" Type="Self.timesheetpresent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="timesheetpresent">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reason">
+          <End Role="timesheetreason" Type="Self.timesheetreason" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="timesheetpresent" Type="Self.timesheetpresent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timesheetreason">
+              <PropertyRef Name="ReasonId" />
+            </Principal>
+            <Dependent Role="timesheetpresent">
+              <PropertyRef Name="Reason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hrEntityModelStoreContainer">
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="hr" store:Type="Tables" />
+          <EntitySet Name="timesheetpresent" EntityType="Self.timesheetpresent" Schema="hr" store:Type="Tables" />
+          <EntitySet Name="timesheetreason" EntityType="Self.timesheetreason" Schema="hr" store:Type="Tables" />
+          <EntitySet Name="timesheetyear2016" EntityType="Self.timesheetyear2016" Schema="hr" store:Type="Tables" />
+          <AssociationSet Name="calende" Association="Self.calende">
+            <End Role="timesheetyear2016" EntitySet="timesheetyear2016" />
+            <End Role="timesheetpresent" EntitySet="timesheetpresent" />
+          </AssociationSet>
+          <AssociationSet Name="employIDD" Association="Self.employIDD">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="timesheetpresent" EntitySet="timesheetpresent" />
+          </AssociationSet>
+          <AssociationSet Name="Reason" Association="Self.Reason">
+            <End Role="timesheetreason" EntitySet="timesheetreason" />
+            <End Role="timesheetpresent" EntitySet="timesheetpresent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hrEntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="employee_id" />
+          </Key>
+          <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="office_id" Type="Int32" />
+          <Property Name="first_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="father_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="mother_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="date_of_birth" Type="DateTime" />
+          <Property Name="spouse_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="governement_id" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="full_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="arabic_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="timesheetpresents" Relationship="hrEntityModel.employIDD" FromRole="employee" ToRole="timesheetpresent" />
+        </EntityType>
+        <EntityType Name="timesheetyear2016">
+          <Key>
+            <PropertyRef Name="CalenderID" />
+          </Key>
+          <Property Name="CalenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GlobalDate" Type="DateTime" />
+          <Property Name="DayOfMonthId" Type="Int32" />
+          <Property Name="DayOfWeekId" Type="Int32" />
+          <Property Name="DayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MonthId" Type="Int32" />
+          <Property Name="MonthName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="YearId" Type="Int32" />
+          <Property Name="Isholiday" Type="Boolean" />
+          <NavigationProperty Name="timesheetpresents" Relationship="hrEntityModel.calende" FromRole="timesheetyear2016" ToRole="timesheetpresent" />
+        </EntityType>
+        <EntityContainer Name="hrEntitiesConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="timesheetyear2016" EntityType="Self.timesheetyear2016" />
+          <EntitySet Name="timesheetreasons" EntityType="hrEntityModel.timesheetreason" />
+          <EntitySet Name="timesheetpresents" EntityType="hrEntityModel.timesheetpresent" />
+          <AssociationSet Name="employIDD" Association="hrEntityModel.employIDD">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="timesheetpresent" EntitySet="timesheetpresents" />
+          </AssociationSet>
+          <AssociationSet Name="calende" Association="hrEntityModel.calende">
+            <End Role="timesheetyear2016" EntitySet="timesheetyear2016" />
+            <End Role="timesheetpresent" EntitySet="timesheetpresents" />
+          </AssociationSet>
+          <AssociationSet Name="Reason" Association="hrEntityModel.Reason">
+            <End Role="timesheetreason" EntitySet="timesheetreasons" />
+            <End Role="timesheetpresent" EntitySet="timesheetpresents" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="timesheetreason">
+          <Key>
+            <PropertyRef Name="ReasonId" />
+          </Key>
+          <Property Name="ReasonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReasonName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="timesheetpresents" Relationship="hrEntityModel.Reason" FromRole="timesheetreason" ToRole="timesheetpresent" />
+        </EntityType>
+        <EntityType Name="timesheetpresent">
+          <Key>
+            <PropertyRef Name="attendanceID" />
+          </Key>
+          <Property Name="attendanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="Int32" />
+          <Property Name="CalenderID" Type="Int32" />
+          <Property Name="IsPresent" Type="Boolean" Nullable="false" />
+          <Property Name="FromTime" Type="Time" />
+          <Property Name="ToTime" Type="Time" />
+          <Property Name="Reason" Type="Int32" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="employee" Relationship="hrEntityModel.employIDD" FromRole="timesheetpresent" ToRole="employee" />
+          <NavigationProperty Name="timesheetyear2016" Relationship="hrEntityModel.calende" FromRole="timesheetpresent" ToRole="timesheetyear2016" />
+          <NavigationProperty Name="timesheetreason" Relationship="hrEntityModel.Reason" FromRole="timesheetpresent" ToRole="timesheetreason" />
+        </EntityType>
+        <Association Name="employIDD">
+          <End Type="hrEntityModel.employee" Role="employee" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="hrEntityModel.timesheetpresent" Role="timesheetpresent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="timesheetpresent">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="calende">
+          <End Type="hrEntityModel.timesheetyear2016" Role="timesheetyear2016" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="hrEntityModel.timesheetpresent" Role="timesheetpresent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timesheetyear2016">
+              <PropertyRef Name="CalenderID" />
+            </Principal>
+            <Dependent Role="timesheetpresent">
+              <PropertyRef Name="CalenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Reason">
+          <End Type="hrEntityModel.timesheetreason" Role="timesheetreason" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="hrEntityModel.timesheetpresent" Role="timesheetpresent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="timesheetreason">
+              <PropertyRef Name="ReasonId" />
+            </Principal>
+            <Dependent Role="timesheetpresent">
+              <PropertyRef Name="Reason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hrEntityModelStoreContainer" CdmEntityContainer="hrEntitiesConnection">
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="hrEntityModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="office_id" ColumnName="office_id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="father_name" ColumnName="father_name" />
+                <ScalarProperty Name="mother_name" ColumnName="mother_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="spouse_name" ColumnName="spouse_name" />
+                <ScalarProperty Name="governement_id" ColumnName="governement_id" />
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="arabic_name" ColumnName="arabic_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timesheetyear2016">
+            <EntityTypeMapping TypeName="hrEntityModel.timesheetyear2016">
+              <MappingFragment StoreEntitySet="timesheetyear2016">
+                <ScalarProperty Name="CalenderID" ColumnName="CalenderID" />
+                <ScalarProperty Name="GlobalDate" ColumnName="GlobalDate" />
+                <ScalarProperty Name="DayOfMonthId" ColumnName="DayOfMonthId" />
+                <ScalarProperty Name="DayOfWeekId" ColumnName="DayOfWeekId" />
+                <ScalarProperty Name="DayName" ColumnName="DayName" />
+                <ScalarProperty Name="MonthId" ColumnName="MonthId" />
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="YearId" ColumnName="YearId" />
+                <ScalarProperty Name="Isholiday" ColumnName="Isholiday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timesheetreasons">
+            <EntityTypeMapping TypeName="hrEntityModel.timesheetreason">
+              <MappingFragment StoreEntitySet="timesheetreason">
+                <ScalarProperty Name="ReasonName" ColumnName="ReasonName" />
+                <ScalarProperty Name="ReasonId" ColumnName="ReasonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timesheetpresents">
+            <EntityTypeMapping TypeName="hrEntityModel.timesheetpresent">
+              <MappingFragment StoreEntitySet="timesheetpresent">
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="ToTime" ColumnName="ToTime" />
+                <ScalarProperty Name="FromTime" ColumnName="FromTime" />
+                <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
+                <ScalarProperty Name="CalenderID" ColumnName="CalenderID" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="attendanceID" ColumnName="attendanceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

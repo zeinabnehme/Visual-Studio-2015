@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SearchClientWebApp.account>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GLOBAL_ACCOUNT_NUM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACCOUNT_TYPE_ID)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Last_personnel_id)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.personnel.GLOBAL_PERSONNEL_NUM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.office.GLOBAL_OFFICE_NUM)
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GLOBAL_ACCOUNT_NUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ACCOUNT_TYPE_ID)
+        </td>
+    
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_personnel_id)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.personnel.GLOBAL_PERSONNEL_NUM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.office.GLOBAL_OFFICE_NUM)
+        </td>
+       
+        <td>
+           
+            @Html.ActionLink("Details", "Details", new { id=item.ACCOUNT_ID }) |
+            @Html.ActionLink("LoanSchd","Index", "loan_schedule", new { id = item.ACCOUNT_ID }, null)
+
+
+        </td>
+    </tr>
+}
+
+</table>

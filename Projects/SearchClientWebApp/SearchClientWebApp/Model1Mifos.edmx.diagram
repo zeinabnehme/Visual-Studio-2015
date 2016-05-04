@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e0870ac4ee8d4443995ff5ccf0e09ba5" Name="Diagram1" ZoomLevel="50">
+        <EntityTypeShape EntityType="mifosEntityModel.account" Width="1.5" PointX="5.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.account_state" Width="1.5" PointX="3" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer_address_detail" Width="2" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer_detail" Width="1.5" PointX="3" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer_flag_detail" Width="1.5" PointX="5.25" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer_name_detail" Width="1.5" PointX="6" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer_note" Width="1.5" PointX="16" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer_state_flag" Width="1.5" PointX="3" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.loan_account" Width="1.5" PointX="12.375" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.loan_schedule" Width="1.5" PointX="15.5" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.lookup_value" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.lookup_value_locale" Width="1.5" PointX="3" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.office" Width="1.5" PointX="5.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.personnel" Width="1.5" PointX="8" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mifosEntityModel.prd_offering" Width="1.5" PointX="10.25" PointY="25.75" IsExpanded="true" />
+        <AssociationConnector Association="mifosEntityModel.account_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.account_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.account_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.fk_loan_acc_id" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.loan_account_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.loan_schedule_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.account_state_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_detail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_detail_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_detail_ibfk_4" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_detail_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_detail_ibfk_6" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_detail_ibfk_7" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_flag_detail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_flag_detail_ibfk_3" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_name_detail_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_note_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.customer_state_flag_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.fk_loan_account" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.fk_loan_bus_act_id" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.fk_loan_col_type_id" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.fk_loan_prd_off_id" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.lookup_value_locale_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.personnel_ibfk_5" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.office_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.personnel_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.prd_offering_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.personnel_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="mifosEntityModel.personnel_ibfk_6" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer_state" Width="1.5" PointX="3" PointY="16.125" />
+        <AssociationConnector Association="mifosEntityModel.customer_state_flag_ibfk_1" />
+        <AssociationConnector Association="mifosEntityModel.customer_state_ibfk_2" />
+        <EntityTypeShape EntityType="mifosEntityModel.customer" Width="1.5" PointX="10.25" PointY="8" />
+        <AssociationConnector Association="mifosEntityModel.account_ibfk_3" />
+        <AssociationConnector Association="mifosEntityModel.customer_address_detail_ibfk_1" />
+        <AssociationConnector Association="mifosEntityModel.customer_detail_ibfk_1" />
+        <AssociationConnector Association="mifosEntityModel.customer_flag_detail_ibfk_1" />
+        <AssociationConnector Association="mifosEntityModel.customer_ibfk_2" />
+        <AssociationConnector Association="mifosEntityModel.customer_ibfk_3" />
+        <AssociationConnector Association="mifosEntityModel.customer_ibfk_4" />
+        <AssociationConnector Association="mifosEntityModel.customer_ibfk_5" />
+        <AssociationConnector Association="mifosEntityModel.customer_ibfk_6" />
+        <AssociationConnector Association="mifosEntityModel.customer_name_detail_ibfk_1" />
+        <AssociationConnector Association="mifosEntityModel.customer_note_ibfk_1" />
+        <AssociationConnector Association="mifosEntityModel.loan_schedule_ibfk_13" />
+        <EntityTypeShape EntityType="mifosEntityModel.rec_entity" Width="1.5" PointX="1.875" PointY="1" />
+        <EntityTypeShape EntityType="mifosEntityModel.rec_lookupvalue" Width="1.5" PointX="4.125" PointY="0.5" />
+        <AssociationConnector Association="mifosEntityModel.ent" />
+        <EntityTypeShape EntityType="mifosEntityModel.rec_collection" Width="1.5" PointX="7.125" PointY="1" />
+        <AssociationConnector Association="mifosEntityModel.Acc" />
+        <AssociationConnector Association="mifosEntityModel.collorlegal" />
+        <AssociationConnector Association="mifosEntityModel.fllow" />
+        <AssociationConnector Association="mifosEntityModel.tyeee" />
+        <EntityTypeShape EntityType="mifosEntityModel.rec_payment" Width="1.5" PointX="10.75" PointY="3.5" />
+        <AssociationConnector Association="mifosEntityModel.accasdasd" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

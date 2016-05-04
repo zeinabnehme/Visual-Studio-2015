@@ -1,0 +1,2884 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mifosEntityModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GLOBAL_ACCOUNT_NUM" Type="varchar" MaxLength="100" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+          <Property Name="ACCOUNT_STATE_ID" Type="smallint" />
+          <Property Name="ACCOUNT_TYPE_ID" Type="smallint" Nullable="false" />
+          <Property Name="OFFICE_ID" Type="smallint" />
+          <Property Name="PERSONNEL_ID" Type="smallint" />
+          <Property Name="CREATED_BY" Type="smallint" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="smallint" />
+          <Property Name="UPDATED_DATE" Type="date" />
+          <Property Name="CLOSED_DATE" Type="date" />
+          <Property Name="VERSION_NO" Type="int" />
+          <Property Name="OFFSETTING_ALLOWABLE" Type="smallint" Nullable="false" />
+          <Property Name="EXTERNAL_ID" Type="varchar" MaxLength="100" />
+          <Property Name="Last_personnel_id" Type="smallint" />
+          <Property Name="ACCOUNT_CREATED_DATE" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="account_state">
+          <Key>
+            <PropertyRef Name="ACCOUNT_STATE_ID" />
+          </Key>
+          <Property Name="ACCOUNT_STATE_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOOKUP_ID" Type="int" Nullable="false" />
+          <Property Name="PRD_TYPE_ID" Type="smallint" Nullable="false" />
+          <Property Name="CURRENTLY_IN_USE" Type="smallint" Nullable="false" />
+          <Property Name="STATUS_DESCRIPTION" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_LEVEL_ID" Type="smallint" Nullable="false" />
+          <Property Name="GLOBAL_CUST_NUM" Type="varchar" MaxLength="100" />
+          <Property Name="LOAN_OFFICER_ID" Type="smallint" />
+          <Property Name="CUSTOMER_FORMEDBY_ID" Type="smallint" />
+          <Property Name="STATUS_ID" Type="smallint" />
+          <Property Name="BRANCH_ID" Type="smallint" />
+          <Property Name="DISPLAY_NAME" Type="varchar" MaxLength="200" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="200" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="200" />
+          <Property Name="SECOND_LAST_NAME" Type="varchar" MaxLength="200" />
+          <Property Name="DISPLAY_ADDRESS" Type="varchar" MaxLength="500" />
+          <Property Name="EXTERNAL_ID" Type="varchar" MaxLength="50" />
+          <Property Name="DATE_OF_BIRTH" Type="date" />
+          <Property Name="GROUP_FLAG" Type="smallint" />
+          <Property Name="TRAINED" Type="smallint" />
+          <Property Name="TRAINED_DATE" Type="date" />
+          <Property Name="PARENT_CUSTOMER_ID" Type="int" />
+          <Property Name="CREATED_DATE" Type="date" />
+          <Property Name="UPDATED_DATE" Type="date" />
+          <Property Name="SEARCH_ID" Type="varchar" MaxLength="100" />
+          <Property Name="MAX_CHILD_COUNT" Type="int" />
+          <Property Name="HO_UPDATED" Type="smallint" />
+          <Property Name="CLIENT_CONFIDENTIAL" Type="smallint" />
+          <Property Name="MFI_JOINING_DATE" Type="date" />
+          <Property Name="GOVERNMENT_ID" Type="varchar" MaxLength="50" />
+          <Property Name="CUSTOMER_ACTIVATION_DATE" Type="date" />
+          <Property Name="CREATED_BY" Type="smallint" />
+          <Property Name="UPDATED_BY" Type="smallint" />
+          <Property Name="BLACKLISTED" Type="smallint" />
+          <Property Name="DISCRIMINATOR" Type="varchar" MaxLength="20" />
+          <Property Name="VERSION_NO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer_address_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ADDRESS_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ADDRESS_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+          <Property Name="LOCALE_ID" Type="smallint" />
+          <Property Name="ADDRESS_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="LINE_1" Type="varchar" MaxLength="200" />
+          <Property Name="LINE_2" Type="varchar" MaxLength="200" />
+          <Property Name="LINE_3" Type="varchar" MaxLength="200" />
+          <Property Name="CITY" Type="varchar" MaxLength="100" />
+          <Property Name="STATE" Type="varchar" MaxLength="100" />
+          <Property Name="COUNTRY" Type="varchar" MaxLength="100" />
+          <Property Name="ZIP" Type="varchar" MaxLength="50" />
+          <Property Name="ADDRESS_STATUS" Type="smallint" />
+          <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="20" />
+          <Property Name="phone_number_stripped" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="customer_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="ethnicity" Type="int" />
+          <Property Name="CITIZENSHIP" Type="int" />
+          <Property Name="HANDICAPPED" Type="int" />
+          <Property Name="BUSINESS_ACTIVITIES" Type="int" />
+          <Property Name="MARITAL_STATUS" Type="int" />
+          <Property Name="EDUCATION_LEVEL" Type="int" />
+          <Property Name="NUM_CHILDREN" Type="smallint" />
+          <Property Name="GENDER" Type="smallint" />
+          <Property Name="DATE_STARTED" Type="date" />
+          <Property Name="HANDICAPPED_DETAILS" Type="varchar" MaxLength="200" />
+          <Property Name="POVERTY_STATUS" Type="int" />
+          <Property Name="POVERTY_LHOOD_PCT" Type="decimal" Precision="21" Scale="4" />
+        </EntityType>
+        <EntityType Name="customer_flag_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_FLAG_ID" />
+          </Key>
+          <Property Name="CUSTOMER_FLAG_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="FLAG_ID" Type="smallint" Nullable="false" />
+          <Property Name="CREATED_BY" Type="smallint" />
+          <Property Name="CREATED_DATE" Type="date" />
+          <Property Name="VERSION_NO" Type="int" />
+        </EntityType>
+        <EntityType Name="customer_name_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_NAME_ID" />
+          </Key>
+          <Property Name="CUSTOMER_NAME_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+          <Property Name="NAME_TYPE" Type="smallint" />
+          <Property Name="LOCALE_ID" Type="smallint" />
+          <Property Name="SALUTATION" Type="int" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MIDDLE_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SECOND_LAST_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="SECOND_MIDDLE_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="DISPLAY_NAME" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="customer_note">
+          <Key>
+            <PropertyRef Name="COMMENT_ID" />
+          </Key>
+          <Property Name="COMMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="FIELD_OFFICER_ID" Type="smallint" Nullable="false" />
+          <Property Name="COMMENT_DATE" Type="date" Nullable="false" />
+          <Property Name="COMMENT" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer_state">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="STATUS_LOOKUP_ID" Type="int" Nullable="false" />
+          <Property Name="LEVEL_ID" Type="smallint" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="200" />
+          <Property Name="CURRENTLY_IN_USE" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer_state_flag">
+          <Key>
+            <PropertyRef Name="FLAG_ID" />
+          </Key>
+          <Property Name="FLAG_ID" Type="smallint" Nullable="false" />
+          <Property Name="FLAG_LOOKUP_ID" Type="int" Nullable="false" />
+          <Property Name="STATUS_ID" Type="smallint" Nullable="false" />
+          <Property Name="FLAG_DESCRIPTION" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ISBLACKLISTED" Type="smallint" />
+        </EntityType>
+        <EntityType Name="loan_account">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="int" Nullable="false" />
+          <Property Name="BUSINESS_ACTIVITIES_ID" Type="int" />
+          <Property Name="COLLATERAL_TYPE_ID" Type="int" />
+          <Property Name="GRACE_PERIOD_TYPE_ID" Type="smallint" Nullable="false" />
+          <Property Name="GROUP_FLAG" Type="smallint" />
+          <Property Name="LOAN_AMOUNT" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="LOAN_AMOUNT_CURRENCY_ID" Type="smallint" />
+          <Property Name="LOAN_BALANCE" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="LOAN_BALANCE_CURRENCY_ID" Type="smallint" />
+          <Property Name="INTEREST_TYPE_ID" Type="smallint" />
+          <Property Name="INTEREST_RATE" Type="decimal" Precision="13" Scale="10" />
+          <Property Name="FUND_ID" Type="smallint" />
+          <Property Name="MEETING_ID" Type="int" />
+          <Property Name="CURRENCY_ID" Type="smallint" />
+          <Property Name="NO_OF_INSTALLMENTS" Type="smallint" Nullable="false" />
+          <Property Name="DISBURSEMENT_DATE" Type="date" />
+          <Property Name="collateral_note" Type="varchar" MaxLength="500" />
+          <Property Name="GRACE_PERIOD_DURATION" Type="smallint" />
+          <Property Name="INTEREST_AT_DISB" Type="smallint" />
+          <Property Name="GRACE_PERIOD_PENALTY" Type="smallint" />
+          <Property Name="PRD_OFFERING_ID" Type="smallint" />
+          <Property Name="REDONE" Type="smallint" Nullable="false" />
+          <Property Name="PARENT_ACCOUNT_ID" Type="int" />
+          <Property Name="MONTH_RANK" Type="smallint" />
+          <Property Name="MONTH_WEEK" Type="smallint" />
+          <Property Name="RECUR_MONTH" Type="smallint" />
+        </EntityType>
+        <EntityType Name="loan_schedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACCOUNT_ID" Type="int" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="CURRENCY_ID" Type="smallint" />
+          <Property Name="ACTION_DATE" Type="date" />
+          <Property Name="PRINCIPAL" Type="decimal" Precision="21" Scale="4" Nullable="false" />
+          <Property Name="PRINCIPAL_CURRENCY_ID" Type="smallint" />
+          <Property Name="INTEREST" Type="decimal" Precision="21" Scale="4" Nullable="false" />
+          <Property Name="INTEREST_CURRENCY_ID" Type="smallint" />
+          <Property Name="PENALTY" Type="decimal" Precision="21" Scale="4" Nullable="false" />
+          <Property Name="PENALTY_CURRENCY_ID" Type="smallint" />
+          <Property Name="MISC_FEES" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="MISC_FEES_CURRENCY_ID" Type="smallint" />
+          <Property Name="MISC_FEES_PAID" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="MISC_FEES_PAID_CURRENCY_ID" Type="smallint" />
+          <Property Name="MISC_PENALTY" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="MISC_PENALTY_CURRENCY_ID" Type="smallint" />
+          <Property Name="MISC_PENALTY_PAID" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="MISC_PENALTY_PAID_CURRENCY_ID" Type="smallint" />
+          <Property Name="PRINCIPAL_PAID" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="PRINCIPAL_PAID_CURRENCY_ID" Type="smallint" />
+          <Property Name="INTEREST_PAID" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="INTEREST_PAID_CURRENCY_ID" Type="smallint" />
+          <Property Name="PENALTY_PAID" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="PENALTY_PAID_CURRENCY_ID" Type="smallint" />
+          <Property Name="PAYMENT_STATUS" Type="smallint" Nullable="false" />
+          <Property Name="INSTALLMENT_ID" Type="smallint" Nullable="false" />
+          <Property Name="PAYMENT_DATE" Type="date" />
+          <Property Name="PARENT_FLAG" Type="smallint" />
+          <Property Name="VERSION_NO" Type="int" Nullable="false" />
+          <Property Name="extra_interest" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="extra_interest_currency_id" Type="smallint" />
+          <Property Name="extra_interest_paid" Type="decimal" Precision="21" Scale="4" />
+          <Property Name="extra_interest_paid_currency_id" Type="smallint" />
+          <Property Name="last_updated" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lookup_value">
+          <Key>
+            <PropertyRef Name="LOOKUP_ID" />
+          </Key>
+          <Property Name="LOOKUP_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ENTITY_ID" Type="smallint" />
+          <Property Name="LOOKUP_NAME" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="lookup_value_locale">
+          <Key>
+            <PropertyRef Name="LOOKUP_VALUE_ID" />
+          </Key>
+          <Property Name="LOOKUP_VALUE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOCALE_ID" Type="smallint" Nullable="false" />
+          <Property Name="LOOKUP_ID" Type="int" Nullable="false" />
+          <Property Name="LOOKUP_VALUE" Type="varchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="office">
+          <Key>
+            <PropertyRef Name="OFFICE_ID" />
+          </Key>
+          <Property Name="OFFICE_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GLOBAL_OFFICE_NUM" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OFFICE_LEVEL_ID" Type="smallint" Nullable="false" />
+          <Property Name="SEARCH_ID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MAX_CHILD_COUNT" Type="int" Nullable="false" />
+          <Property Name="LOCAL_REMOTE_FLAG" Type="smallint" Nullable="false" />
+          <Property Name="DISPLAY_NAME" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CREATED_BY" Type="smallint" />
+          <Property Name="CREATED_DATE" Type="date" />
+          <Property Name="UPDATED_BY" Type="smallint" />
+          <Property Name="UPDATED_DATE" Type="date" />
+          <Property Name="OFFICE_SHORT_NAME" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PARENT_OFFICE_ID" Type="smallint" />
+          <Property Name="STATUS_ID" Type="smallint" Nullable="false" />
+          <Property Name="VERSION_NO" Type="int" Nullable="false" />
+          <Property Name="OFFICE_CODE_ID" Type="smallint" />
+          <Property Name="p_code" Type="int" />
+        </EntityType>
+        <EntityType Name="personnel">
+          <Key>
+            <PropertyRef Name="PERSONNEL_ID" />
+          </Key>
+          <Property Name="PERSONNEL_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LEVEL_ID" Type="smallint" Nullable="false" />
+          <Property Name="GLOBAL_PERSONNEL_NUM" Type="varchar" MaxLength="100" />
+          <Property Name="OFFICE_ID" Type="smallint" />
+          <Property Name="TITLE" Type="int" />
+          <Property Name="PERSONNEL_STATUS" Type="smallint" />
+          <Property Name="PREFERRED_LOCALE" Type="smallint" />
+          <Property Name="site_preference" Type="smallint" />
+          <Property Name="SEARCH_ID" Type="varchar" MaxLength="100" />
+          <Property Name="MAX_CHILD_COUNT" Type="int" />
+          <Property Name="PASSWORD" Type="tinyblob" />
+          <Property Name="LOGIN_NAME" Type="varchar" MaxLength="200" />
+          <Property Name="EMAIL_ID" Type="varchar" MaxLength="255" />
+          <Property Name="PASSWORD_CHANGED" Type="smallint" Nullable="false" />
+          <Property Name="DISPLAY_NAME" Type="varchar" MaxLength="200" />
+          <Property Name="CREATED_BY" Type="smallint" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="date" />
+          <Property Name="UPDATED_BY" Type="smallint" />
+          <Property Name="UPDATED_DATE" Type="date" />
+          <Property Name="LAST_LOGIN" Type="date" />
+          <Property Name="LOCKED" Type="smallint" Nullable="false" />
+          <Property Name="NO_OF_TRIES" Type="smallint" Nullable="false" />
+          <Property Name="VERSION_NO" Type="int" Nullable="false" />
+          <Property Name="password_expiration_date" Type="date" />
+          <Property Name="p_Code" Type="int" />
+        </EntityType>
+        <EntityType Name="prd_offering">
+          <Key>
+            <PropertyRef Name="PRD_OFFERING_ID" />
+          </Key>
+          <Property Name="PRD_OFFERING_ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRD_APPLICABLE_MASTER_ID" Type="smallint" Nullable="false" />
+          <Property Name="GLOBAL_PRD_OFFERING_NUM" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRD_CATEGORY_ID" Type="smallint" Nullable="false" />
+          <Property Name="PRD_TYPE_ID" Type="smallint" />
+          <Property Name="OFFICE_ID" Type="smallint" />
+          <Property Name="START_DATE" Type="date" Nullable="false" />
+          <Property Name="END_DATE" Type="date" />
+          <Property Name="GLCODE_ID" Type="smallint" />
+          <Property Name="PRD_OFFERING_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRD_OFFERING_SHORT_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OFFERING_STATUS_ID" Type="smallint" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="200" />
+          <Property Name="CREATED_DATE" Type="date" Nullable="false" />
+          <Property Name="CREATED_BY" Type="int" Nullable="false" />
+          <Property Name="UPDATED_DATE" Type="date" />
+          <Property Name="UPDATED_BY" Type="int" />
+          <Property Name="VERSION_NO" Type="int" />
+          <Property Name="PRD_MIX_FLAG" Type="smallint" />
+          <Property Name="CURRENCY_ID" Type="smallint" />
+        </EntityType>
+        <EntityType Name="rec_collection">
+          <Key>
+            <PropertyRef Name="Account_id" />
+          </Key>
+          <Property Name="Account_id" Type="int" Nullable="false" />
+          <Property Name="CollOrLegal" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="DateOfTransfer" Type="date" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="TypeFollowup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="rec_entity">
+          <Key>
+            <PropertyRef Name="EntityID" />
+          </Key>
+          <Property Name="EntityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="rec_lookupvalue">
+          <Key>
+            <PropertyRef Name="LookupValueId" />
+          </Key>
+          <Property Name="LookupValueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntityId" Type="int" />
+          <Property Name="lookupValueName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="rec_payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="PaymentAmount" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="Acc">
+          <End Role="account" Type="Self.account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rec_collection" Type="Self.rec_collection" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="Account_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="accasdasd">
+          <End Role="account" Type="Self.account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rec_payment" Type="Self.rec_payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="rec_payment">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_ibfk_1">
+          <End Role="account_state" Type="Self.account_state" Multiplicity="0..1" />
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account_state">
+              <PropertyRef Name="ACCOUNT_STATE_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="ACCOUNT_STATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_ibfk_3">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_ibfk_4">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_ibfk_5">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_state_ibfk_1">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="1" />
+          <End Role="account_state" Type="Self.account_state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="account_state">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="collorlegal">
+          <End Role="rec_lookupvalue" Type="Self.rec_lookupvalue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rec_collection" Type="Self.rec_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_lookupvalue">
+              <PropertyRef Name="LookupValueId" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="CollOrLegal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_address_detail_ibfk_1">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="customer_address_detail" Type="Self.customer_address_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_address_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_2">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="CITIZENSHIP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_3">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="EDUCATION_LEVEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_4">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="ethnicity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_5">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="HANDICAPPED" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_6">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="MARITAL_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_7">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="POVERTY_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_flag_detail_ibfk_1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customer_flag_detail" Type="Self.customer_flag_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_flag_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_flag_detail_ibfk_2">
+          <End Role="customer_state_flag" Type="Self.customer_state_flag" Multiplicity="1" />
+          <End Role="customer_flag_detail" Type="Self.customer_flag_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer_state_flag">
+              <PropertyRef Name="FLAG_ID" />
+            </Principal>
+            <Dependent Role="customer_flag_detail">
+              <PropertyRef Name="FLAG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_flag_detail_ibfk_3">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="customer_flag_detail" Type="Self.customer_flag_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer_flag_detail">
+              <PropertyRef Name="CREATED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_2">
+          <End Role="customer_state" Type="Self.customer_state" Multiplicity="0..1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer_state">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_3">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="BRANCH_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_4">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="LOAN_OFFICER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_5">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="CUSTOMER_FORMEDBY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_6">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="customer1" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer1">
+              <PropertyRef Name="PARENT_CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_name_detail_ibfk_1">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="customer_name_detail" Type="Self.customer_name_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_name_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_name_detail_ibfk_2">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_name_detail" Type="Self.customer_name_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_name_detail">
+              <PropertyRef Name="SALUTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_note_ibfk_1">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="customer_note" Type="Self.customer_note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_note">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_note_ibfk_2">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+          <End Role="customer_note" Type="Self.customer_note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer_note">
+              <PropertyRef Name="FIELD_OFFICER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_state_flag_ibfk_1">
+          <End Role="customer_state" Type="Self.customer_state" Multiplicity="1" />
+          <End Role="customer_state_flag" Type="Self.customer_state_flag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer_state">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="customer_state_flag">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_state_flag_ibfk_2">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="1" />
+          <End Role="customer_state_flag" Type="Self.customer_state_flag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_state_flag">
+              <PropertyRef Name="FLAG_LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_state_ibfk_2">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="1" />
+          <End Role="customer_state" Type="Self.customer_state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_state">
+              <PropertyRef Name="STATUS_LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ent">
+          <End Role="rec_entity" Type="Self.rec_entity" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rec_lookupvalue" Type="Self.rec_lookupvalue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_entity">
+              <PropertyRef Name="EntityID" />
+            </Principal>
+            <Dependent Role="rec_lookupvalue">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_acc_id">
+          <End Role="account" Type="Self.account" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="PARENT_ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_account">
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="0..1" />
+          <End Role="loan_account1" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loan_account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_account1">
+              <PropertyRef Name="PARENT_ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_bus_act_id">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="BUSINESS_ACTIVITIES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_col_type_id">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="COLLATERAL_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_prd_off_id">
+          <End Role="prd_offering" Type="Self.prd_offering" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prd_offering">
+              <PropertyRef Name="PRD_OFFERING_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="PRD_OFFERING_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fllow">
+          <End Role="rec_lookupvalue" Type="Self.rec_lookupvalue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rec_collection" Type="Self.rec_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_lookupvalue">
+              <PropertyRef Name="LookupValueId" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="TypeFollowup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="loan_account_ibfk_1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="loan_schedule_ibfk_1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="loan_schedule" Type="Self.loan_schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_schedule">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="loan_schedule_ibfk_13">
+          <End Role="customer" Type="Self.customer" Multiplicity="1" />
+          <End Role="loan_schedule" Type="Self.loan_schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="loan_schedule">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="lookup_value_locale_ibfk_1">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="1" />
+          <End Role="lookup_value_locale" Type="Self.lookup_value_locale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="lookup_value_locale">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="office_ibfk_2">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="office1" Type="Self.office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="office1">
+              <PropertyRef Name="PARENT_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_1">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="personnel" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="personnel">
+              <PropertyRef Name="OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_2">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+          <End Role="personnel1" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="personnel1">
+              <PropertyRef Name="CREATED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_5">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="personnel" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="personnel">
+              <PropertyRef Name="TITLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_6">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="personnel1" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="personnel1">
+              <PropertyRef Name="UPDATED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prd_offering_ibfk_2">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="prd_offering" Type="Self.prd_offering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="prd_offering">
+              <PropertyRef Name="OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tyeee">
+          <End Role="rec_lookupvalue" Type="Self.rec_lookupvalue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="rec_collection" Type="Self.rec_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_lookupvalue">
+              <PropertyRef Name="LookupValueId" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mifosEntityModelStoreContainer">
+          <EntitySet Name="account" EntityType="Self.account" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="account_state" EntityType="Self.account_state" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer_address_detail" EntityType="Self.customer_address_detail" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer_detail" EntityType="Self.customer_detail" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer_flag_detail" EntityType="Self.customer_flag_detail" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer_name_detail" EntityType="Self.customer_name_detail" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer_note" EntityType="Self.customer_note" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer_state" EntityType="Self.customer_state" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="customer_state_flag" EntityType="Self.customer_state_flag" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="loan_account" EntityType="Self.loan_account" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="loan_schedule" EntityType="Self.loan_schedule" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="lookup_value" EntityType="Self.lookup_value" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="lookup_value_locale" EntityType="Self.lookup_value_locale" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="office" EntityType="Self.office" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="personnel" EntityType="Self.personnel" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="prd_offering" EntityType="Self.prd_offering" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="rec_collection" EntityType="Self.rec_collection" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="rec_entity" EntityType="Self.rec_entity" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="rec_lookupvalue" EntityType="Self.rec_lookupvalue" Schema="mifos" store:Type="Tables" />
+          <EntitySet Name="rec_payment" EntityType="Self.rec_payment" Schema="mifos" store:Type="Tables" />
+          <AssociationSet Name="Acc" Association="Self.Acc">
+            <End Role="account" EntitySet="account" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+          <AssociationSet Name="accasdasd" Association="Self.accasdasd">
+            <End Role="account" EntitySet="account" />
+            <End Role="rec_payment" EntitySet="rec_payment" />
+          </AssociationSet>
+          <AssociationSet Name="account_ibfk_1" Association="Self.account_ibfk_1">
+            <End Role="account_state" EntitySet="account_state" />
+            <End Role="account" EntitySet="account" />
+          </AssociationSet>
+          <AssociationSet Name="account_ibfk_3" Association="Self.account_ibfk_3">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="account" EntitySet="account" />
+          </AssociationSet>
+          <AssociationSet Name="account_ibfk_4" Association="Self.account_ibfk_4">
+            <End Role="personnel" EntitySet="personnel" />
+            <End Role="account" EntitySet="account" />
+          </AssociationSet>
+          <AssociationSet Name="account_ibfk_5" Association="Self.account_ibfk_5">
+            <End Role="office" EntitySet="office" />
+            <End Role="account" EntitySet="account" />
+          </AssociationSet>
+          <AssociationSet Name="account_state_ibfk_1" Association="Self.account_state_ibfk_1">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="account_state" EntitySet="account_state" />
+          </AssociationSet>
+          <AssociationSet Name="collorlegal" Association="Self.collorlegal">
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+          <AssociationSet Name="customer_address_detail_ibfk_1" Association="Self.customer_address_detail_ibfk_1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customer_address_detail" EntitySet="customer_address_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_1" Association="Self.customer_detail_ibfk_1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_2" Association="Self.customer_detail_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_3" Association="Self.customer_detail_ibfk_3">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_4" Association="Self.customer_detail_ibfk_4">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_5" Association="Self.customer_detail_ibfk_5">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_6" Association="Self.customer_detail_ibfk_6">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_7" Association="Self.customer_detail_ibfk_7">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_flag_detail_ibfk_1" Association="Self.customer_flag_detail_ibfk_1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customer_flag_detail" EntitySet="customer_flag_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_flag_detail_ibfk_2" Association="Self.customer_flag_detail_ibfk_2">
+            <End Role="customer_state_flag" EntitySet="customer_state_flag" />
+            <End Role="customer_flag_detail" EntitySet="customer_flag_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_flag_detail_ibfk_3" Association="Self.customer_flag_detail_ibfk_3">
+            <End Role="personnel" EntitySet="personnel" />
+            <End Role="customer_flag_detail" EntitySet="customer_flag_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_2" Association="Self.customer_ibfk_2">
+            <End Role="customer_state" EntitySet="customer_state" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_3" Association="Self.customer_ibfk_3">
+            <End Role="office" EntitySet="office" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_4" Association="Self.customer_ibfk_4">
+            <End Role="personnel" EntitySet="personnel" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_5" Association="Self.customer_ibfk_5">
+            <End Role="personnel" EntitySet="personnel" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_6" Association="Self.customer_ibfk_6">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customer1" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="customer_name_detail_ibfk_1" Association="Self.customer_name_detail_ibfk_1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customer_name_detail" EntitySet="customer_name_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_name_detail_ibfk_2" Association="Self.customer_name_detail_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_name_detail" EntitySet="customer_name_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_note_ibfk_1" Association="Self.customer_note_ibfk_1">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="customer_note" EntitySet="customer_note" />
+          </AssociationSet>
+          <AssociationSet Name="customer_note_ibfk_2" Association="Self.customer_note_ibfk_2">
+            <End Role="personnel" EntitySet="personnel" />
+            <End Role="customer_note" EntitySet="customer_note" />
+          </AssociationSet>
+          <AssociationSet Name="customer_state_flag_ibfk_1" Association="Self.customer_state_flag_ibfk_1">
+            <End Role="customer_state" EntitySet="customer_state" />
+            <End Role="customer_state_flag" EntitySet="customer_state_flag" />
+          </AssociationSet>
+          <AssociationSet Name="customer_state_flag_ibfk_2" Association="Self.customer_state_flag_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_state_flag" EntitySet="customer_state_flag" />
+          </AssociationSet>
+          <AssociationSet Name="customer_state_ibfk_2" Association="Self.customer_state_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_state" EntitySet="customer_state" />
+          </AssociationSet>
+          <AssociationSet Name="ent" Association="Self.ent">
+            <End Role="rec_entity" EntitySet="rec_entity" />
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_acc_id" Association="Self.fk_loan_acc_id">
+            <End Role="account" EntitySet="account" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_account" Association="Self.fk_loan_account">
+            <End Role="loan_account" EntitySet="loan_account" />
+            <End Role="loan_account1" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_bus_act_id" Association="Self.fk_loan_bus_act_id">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_col_type_id" Association="Self.fk_loan_col_type_id">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_prd_off_id" Association="Self.fk_loan_prd_off_id">
+            <End Role="prd_offering" EntitySet="prd_offering" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fllow" Association="Self.fllow">
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+          <AssociationSet Name="loan_account_ibfk_1" Association="Self.loan_account_ibfk_1">
+            <End Role="account" EntitySet="account" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="loan_schedule_ibfk_1" Association="Self.loan_schedule_ibfk_1">
+            <End Role="account" EntitySet="account" />
+            <End Role="loan_schedule" EntitySet="loan_schedule" />
+          </AssociationSet>
+          <AssociationSet Name="loan_schedule_ibfk_13" Association="Self.loan_schedule_ibfk_13">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="loan_schedule" EntitySet="loan_schedule" />
+          </AssociationSet>
+          <AssociationSet Name="lookup_value_locale_ibfk_1" Association="Self.lookup_value_locale_ibfk_1">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="lookup_value_locale" EntitySet="lookup_value_locale" />
+          </AssociationSet>
+          <AssociationSet Name="office_ibfk_2" Association="Self.office_ibfk_2">
+            <End Role="office" EntitySet="office" />
+            <End Role="office1" EntitySet="office" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_1" Association="Self.personnel_ibfk_1">
+            <End Role="office" EntitySet="office" />
+            <End Role="personnel" EntitySet="personnel" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_2" Association="Self.personnel_ibfk_2">
+            <End Role="personnel" EntitySet="personnel" />
+            <End Role="personnel1" EntitySet="personnel" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_5" Association="Self.personnel_ibfk_5">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="personnel" EntitySet="personnel" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_6" Association="Self.personnel_ibfk_6">
+            <End Role="personnel" EntitySet="personnel" />
+            <End Role="personnel1" EntitySet="personnel" />
+          </AssociationSet>
+          <AssociationSet Name="prd_offering_ibfk_2" Association="Self.prd_offering_ibfk_2">
+            <End Role="office" EntitySet="office" />
+            <End Role="prd_offering" EntitySet="prd_offering" />
+          </AssociationSet>
+          <AssociationSet Name="tyeee" Association="Self.tyeee">
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mifosEntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GLOBAL_ACCOUNT_NUM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_ID" Type="Int32" />
+          <Property Name="ACCOUNT_STATE_ID" Type="Int16" />
+          <Property Name="ACCOUNT_TYPE_ID" Type="Int16" Nullable="false" />
+          <Property Name="OFFICE_ID" Type="Int16" />
+          <Property Name="PERSONNEL_ID" Type="Int16" />
+          <Property Name="CREATED_BY" Type="Int16" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="UPDATED_BY" Type="Int16" />
+          <Property Name="UPDATED_DATE" Type="DateTime" />
+          <Property Name="CLOSED_DATE" Type="DateTime" />
+          <Property Name="VERSION_NO" Type="Int32" />
+          <Property Name="OFFSETTING_ALLOWABLE" Type="Int16" Nullable="false" />
+          <Property Name="EXTERNAL_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Last_personnel_id" Type="Int16" />
+          <Property Name="ACCOUNT_CREATED_DATE" Type="DateTime" />
+          <NavigationProperty Name="account_state" Relationship="Self.account_ibfk_1" FromRole="account" ToRole="account_state" />
+          <NavigationProperty Name="personnel" Relationship="Self.account_ibfk_4" FromRole="account" ToRole="personnel" />
+          <NavigationProperty Name="office" Relationship="Self.account_ibfk_5" FromRole="account" ToRole="office" />
+          <NavigationProperty Name="loan_account" Relationship="Self.fk_loan_acc_id" FromRole="account" ToRole="loan_account" />
+          <NavigationProperty Name="loan_account1" Relationship="Self.loan_account_ibfk_1" FromRole="account" ToRole="loan_account" />
+          <NavigationProperty Name="loan_schedule" Relationship="Self.loan_schedule_ibfk_1" FromRole="account" ToRole="loan_schedule" />
+          <NavigationProperty Name="customer" Relationship="mifosEntityModel.account_ibfk_3" FromRole="account" ToRole="customer" />
+          <NavigationProperty Name="rec_collection" Relationship="mifosEntityModel.Acc" FromRole="account" ToRole="rec_collection" />
+          <NavigationProperty Name="rec_payment" Relationship="mifosEntityModel.accasdasd" FromRole="account" ToRole="rec_payment" />
+        </EntityType>
+        <EntityType Name="account_state">
+          <Key>
+            <PropertyRef Name="ACCOUNT_STATE_ID" />
+          </Key>
+          <Property Name="ACCOUNT_STATE_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOOKUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="PRD_TYPE_ID" Type="Int16" Nullable="false" />
+          <Property Name="CURRENTLY_IN_USE" Type="Int16" Nullable="false" />
+          <Property Name="STATUS_DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="accounts" Relationship="Self.account_ibfk_1" FromRole="account_state" ToRole="account" />
+          <NavigationProperty Name="lookup_value" Relationship="Self.account_state_ibfk_1" FromRole="account_state" ToRole="lookup_value" />
+        </EntityType>
+        <EntityType Name="customer_address_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ADDRESS_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ADDRESS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" />
+          <Property Name="LOCALE_ID" Type="Int16" />
+          <Property Name="ADDRESS_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LINE_1" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LINE_2" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LINE_3" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="STATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS_STATUS" Type="Int16" />
+          <Property Name="PHONE_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="phone_number_stripped" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="customer" Relationship="mifosEntityModel.customer_address_detail_ibfk_1" FromRole="customer_address_detail" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="customer_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="ethnicity" Type="Int32" />
+          <Property Name="CITIZENSHIP" Type="Int32" />
+          <Property Name="HANDICAPPED" Type="Int32" />
+          <Property Name="BUSINESS_ACTIVITIES" Type="Int32" />
+          <Property Name="MARITAL_STATUS" Type="Int32" />
+          <Property Name="EDUCATION_LEVEL" Type="Int32" />
+          <Property Name="NUM_CHILDREN" Type="Int16" />
+          <Property Name="GENDER" Type="Int16" />
+          <Property Name="DATE_STARTED" Type="DateTime" />
+          <Property Name="HANDICAPPED_DETAILS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="POVERTY_STATUS" Type="Int32" />
+          <Property Name="POVERTY_LHOOD_PCT" Type="Decimal" />
+          <NavigationProperty Name="lookup_value" Relationship="Self.customer_detail_ibfk_2" FromRole="customer_detail" ToRole="lookup_value" />
+          <NavigationProperty Name="lookup_value1" Relationship="Self.customer_detail_ibfk_3" FromRole="customer_detail" ToRole="lookup_value" />
+          <NavigationProperty Name="lookup_value2" Relationship="Self.customer_detail_ibfk_4" FromRole="customer_detail" ToRole="lookup_value" />
+          <NavigationProperty Name="lookup_value3" Relationship="Self.customer_detail_ibfk_5" FromRole="customer_detail" ToRole="lookup_value" />
+          <NavigationProperty Name="lookup_value4" Relationship="Self.customer_detail_ibfk_6" FromRole="customer_detail" ToRole="lookup_value" />
+          <NavigationProperty Name="lookup_value5" Relationship="Self.customer_detail_ibfk_7" FromRole="customer_detail" ToRole="lookup_value" />
+          <NavigationProperty Name="customer" Relationship="mifosEntityModel.customer_detail_ibfk_1" FromRole="customer_detail" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="customer_flag_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_FLAG_ID" />
+          </Key>
+          <Property Name="CUSTOMER_FLAG_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="FLAG_ID" Type="Int16" Nullable="false" />
+          <Property Name="CREATED_BY" Type="Int16" />
+          <Property Name="CREATED_DATE" Type="DateTime" />
+          <Property Name="VERSION_NO" Type="Int32" />
+          <NavigationProperty Name="customer_state_flag" Relationship="Self.customer_flag_detail_ibfk_2" FromRole="customer_flag_detail" ToRole="customer_state_flag" />
+          <NavigationProperty Name="personnel" Relationship="Self.customer_flag_detail_ibfk_3" FromRole="customer_flag_detail" ToRole="personnel" />
+          <NavigationProperty Name="customer" Relationship="mifosEntityModel.customer_flag_detail_ibfk_1" FromRole="customer_flag_detail" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="customer_name_detail">
+          <Key>
+            <PropertyRef Name="CUSTOMER_NAME_ID" />
+          </Key>
+          <Property Name="CUSTOMER_NAME_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" />
+          <Property Name="NAME_TYPE" Type="Int16" />
+          <Property Name="LOCALE_ID" Type="Int16" />
+          <Property Name="SALUTATION" Type="Int32" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MIDDLE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SECOND_LAST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SECOND_MIDDLE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DISPLAY_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="lookup_value" Relationship="Self.customer_name_detail_ibfk_2" FromRole="customer_name_detail" ToRole="lookup_value" />
+          <NavigationProperty Name="customer" Relationship="mifosEntityModel.customer_name_detail_ibfk_1" FromRole="customer_name_detail" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="customer_note">
+          <Key>
+            <PropertyRef Name="COMMENT_ID" />
+          </Key>
+          <Property Name="COMMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="FIELD_OFFICER_ID" Type="Int16" Nullable="false" />
+          <Property Name="COMMENT_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="COMMENT" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="personnel" Relationship="Self.customer_note_ibfk_2" FromRole="customer_note" ToRole="personnel" />
+          <NavigationProperty Name="customer" Relationship="mifosEntityModel.customer_note_ibfk_1" FromRole="customer_note" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="customer_state_flag">
+          <Key>
+            <PropertyRef Name="FLAG_ID" />
+          </Key>
+          <Property Name="FLAG_ID" Type="Int16" Nullable="false" />
+          <Property Name="FLAG_LOOKUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="STATUS_ID" Type="Int16" Nullable="false" />
+          <Property Name="FLAG_DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISBLACKLISTED" Type="Int16" />
+          <NavigationProperty Name="customer_flag_detail" Relationship="Self.customer_flag_detail_ibfk_2" FromRole="customer_state_flag" ToRole="customer_flag_detail" />
+          <NavigationProperty Name="lookup_value" Relationship="Self.customer_state_flag_ibfk_2" FromRole="customer_state_flag" ToRole="lookup_value" />
+          <NavigationProperty Name="customer_state" Relationship="mifosEntityModel.customer_state_flag_ibfk_1" FromRole="customer_state_flag" ToRole="customer_state" />
+        </EntityType>
+        <EntityType Name="loan_account">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="Int32" Nullable="false" />
+          <Property Name="BUSINESS_ACTIVITIES_ID" Type="Int32" />
+          <Property Name="COLLATERAL_TYPE_ID" Type="Int32" />
+          <Property Name="GRACE_PERIOD_TYPE_ID" Type="Int16" Nullable="false" />
+          <Property Name="GROUP_FLAG" Type="Int16" />
+          <Property Name="LOAN_AMOUNT" Type="Decimal" />
+          <Property Name="LOAN_AMOUNT_CURRENCY_ID" Type="Int16" />
+          <Property Name="LOAN_BALANCE" Type="Decimal" />
+          <Property Name="LOAN_BALANCE_CURRENCY_ID" Type="Int16" />
+          <Property Name="INTEREST_TYPE_ID" Type="Int16" />
+          <Property Name="INTEREST_RATE" Type="Decimal" />
+          <Property Name="FUND_ID" Type="Int16" />
+          <Property Name="MEETING_ID" Type="Int32" />
+          <Property Name="CURRENCY_ID" Type="Int16" />
+          <Property Name="NO_OF_INSTALLMENTS" Type="Int16" Nullable="false" />
+          <Property Name="DISBURSEMENT_DATE" Type="DateTime" />
+          <Property Name="collateral_note" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="GRACE_PERIOD_DURATION" Type="Int16" />
+          <Property Name="INTEREST_AT_DISB" Type="Int16" />
+          <Property Name="GRACE_PERIOD_PENALTY" Type="Int16" />
+          <Property Name="PRD_OFFERING_ID" Type="Int16" />
+          <Property Name="REDONE" Type="Int16" Nullable="false" />
+          <Property Name="PARENT_ACCOUNT_ID" Type="Int32" />
+          <Property Name="MONTH_RANK" Type="Int16" />
+          <Property Name="MONTH_WEEK" Type="Int16" />
+          <Property Name="RECUR_MONTH" Type="Int16" />
+          <NavigationProperty Name="account" Relationship="Self.fk_loan_acc_id" FromRole="loan_account" ToRole="account" />
+          <NavigationProperty Name="account1" Relationship="Self.loan_account_ibfk_1" FromRole="loan_account" ToRole="account" />
+          <NavigationProperty Name="loan_account1" Relationship="Self.fk_loan_account" FromRole="loan_account" ToRole="loan_account1" />
+          <NavigationProperty Name="loan_account2" Relationship="Self.fk_loan_account" FromRole="loan_account1" ToRole="loan_account" />
+          <NavigationProperty Name="lookup_value" Relationship="Self.fk_loan_bus_act_id" FromRole="loan_account" ToRole="lookup_value" />
+          <NavigationProperty Name="lookup_value1" Relationship="Self.fk_loan_col_type_id" FromRole="loan_account" ToRole="lookup_value" />
+          <NavigationProperty Name="prd_offering" Relationship="Self.fk_loan_prd_off_id" FromRole="loan_account" ToRole="prd_offering" />
+        </EntityType>
+        <EntityType Name="loan_schedule">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACCOUNT_ID" Type="Int32" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="CURRENCY_ID" Type="Int16" />
+          <Property Name="ACTION_DATE" Type="DateTime" />
+          <Property Name="PRINCIPAL" Type="Decimal" Nullable="false" />
+          <Property Name="PRINCIPAL_CURRENCY_ID" Type="Int16" />
+          <Property Name="INTEREST" Type="Decimal" Nullable="false" />
+          <Property Name="INTEREST_CURRENCY_ID" Type="Int16" />
+          <Property Name="PENALTY" Type="Decimal" Nullable="false" />
+          <Property Name="PENALTY_CURRENCY_ID" Type="Int16" />
+          <Property Name="MISC_FEES" Type="Decimal" />
+          <Property Name="MISC_FEES_CURRENCY_ID" Type="Int16" />
+          <Property Name="MISC_FEES_PAID" Type="Decimal" />
+          <Property Name="MISC_FEES_PAID_CURRENCY_ID" Type="Int16" />
+          <Property Name="MISC_PENALTY" Type="Decimal" />
+          <Property Name="MISC_PENALTY_CURRENCY_ID" Type="Int16" />
+          <Property Name="MISC_PENALTY_PAID" Type="Decimal" />
+          <Property Name="MISC_PENALTY_PAID_CURRENCY_ID" Type="Int16" />
+          <Property Name="PRINCIPAL_PAID" Type="Decimal" />
+          <Property Name="PRINCIPAL_PAID_CURRENCY_ID" Type="Int16" />
+          <Property Name="INTEREST_PAID" Type="Decimal" />
+          <Property Name="INTEREST_PAID_CURRENCY_ID" Type="Int16" />
+          <Property Name="PENALTY_PAID" Type="Decimal" />
+          <Property Name="PENALTY_PAID_CURRENCY_ID" Type="Int16" />
+          <Property Name="PAYMENT_STATUS" Type="Int16" Nullable="false" />
+          <Property Name="INSTALLMENT_ID" Type="Int16" Nullable="false" />
+          <Property Name="PAYMENT_DATE" Type="DateTime" />
+          <Property Name="PARENT_FLAG" Type="Int16" />
+          <Property Name="VERSION_NO" Type="Int32" Nullable="false" />
+          <Property Name="extra_interest" Type="Decimal" />
+          <Property Name="extra_interest_currency_id" Type="Int16" />
+          <Property Name="extra_interest_paid" Type="Decimal" />
+          <Property Name="extra_interest_paid_currency_id" Type="Int16" />
+          <Property Name="last_updated" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="Self.loan_schedule_ibfk_1" FromRole="loan_schedule" ToRole="account" />
+          <NavigationProperty Name="customer" Relationship="mifosEntityModel.loan_schedule_ibfk_13" FromRole="loan_schedule" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="lookup_value">
+          <Key>
+            <PropertyRef Name="LOOKUP_ID" />
+          </Key>
+          <Property Name="LOOKUP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ENTITY_ID" Type="Int16" />
+          <Property Name="LOOKUP_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="account_state" Relationship="Self.account_state_ibfk_1" FromRole="lookup_value" ToRole="account_state" />
+          <NavigationProperty Name="customer_detail" Relationship="Self.customer_detail_ibfk_2" FromRole="lookup_value" ToRole="customer_detail" />
+          <NavigationProperty Name="customer_detail1" Relationship="Self.customer_detail_ibfk_3" FromRole="lookup_value" ToRole="customer_detail" />
+          <NavigationProperty Name="customer_detail2" Relationship="Self.customer_detail_ibfk_4" FromRole="lookup_value" ToRole="customer_detail" />
+          <NavigationProperty Name="customer_detail3" Relationship="Self.customer_detail_ibfk_5" FromRole="lookup_value" ToRole="customer_detail" />
+          <NavigationProperty Name="customer_detail4" Relationship="Self.customer_detail_ibfk_6" FromRole="lookup_value" ToRole="customer_detail" />
+          <NavigationProperty Name="customer_detail5" Relationship="Self.customer_detail_ibfk_7" FromRole="lookup_value" ToRole="customer_detail" />
+          <NavigationProperty Name="customer_name_detail" Relationship="Self.customer_name_detail_ibfk_2" FromRole="lookup_value" ToRole="customer_name_detail" />
+          <NavigationProperty Name="customer_state_flag" Relationship="Self.customer_state_flag_ibfk_2" FromRole="lookup_value" ToRole="customer_state_flag" />
+          <NavigationProperty Name="loan_account" Relationship="Self.fk_loan_bus_act_id" FromRole="lookup_value" ToRole="loan_account" />
+          <NavigationProperty Name="loan_account1" Relationship="Self.fk_loan_col_type_id" FromRole="lookup_value" ToRole="loan_account" />
+          <NavigationProperty Name="lookup_value_locale" Relationship="Self.lookup_value_locale_ibfk_1" FromRole="lookup_value" ToRole="lookup_value_locale" />
+          <NavigationProperty Name="personnels" Relationship="Self.personnel_ibfk_5" FromRole="lookup_value" ToRole="personnel" />
+          <NavigationProperty Name="customer_state" Relationship="mifosEntityModel.customer_state_ibfk_2" FromRole="lookup_value" ToRole="customer_state" />
+        </EntityType>
+        <EntityType Name="lookup_value_locale">
+          <Key>
+            <PropertyRef Name="LOOKUP_VALUE_ID" />
+          </Key>
+          <Property Name="LOOKUP_VALUE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOCALE_ID" Type="Int16" Nullable="false" />
+          <Property Name="LOOKUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="LOOKUP_VALUE" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="lookup_value1" Relationship="Self.lookup_value_locale_ibfk_1" FromRole="lookup_value_locale" ToRole="lookup_value" />
+        </EntityType>
+        <EntityType Name="office">
+          <Key>
+            <PropertyRef Name="OFFICE_ID" />
+          </Key>
+          <Property Name="OFFICE_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GLOBAL_OFFICE_NUM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OFFICE_LEVEL_ID" Type="Int16" Nullable="false" />
+          <Property Name="SEARCH_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAX_CHILD_COUNT" Type="Int32" Nullable="false" />
+          <Property Name="LOCAL_REMOTE_FLAG" Type="Int16" Nullable="false" />
+          <Property Name="DISPLAY_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CREATED_BY" Type="Int16" />
+          <Property Name="CREATED_DATE" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="Int16" />
+          <Property Name="UPDATED_DATE" Type="DateTime" />
+          <Property Name="OFFICE_SHORT_NAME" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PARENT_OFFICE_ID" Type="Int16" />
+          <Property Name="STATUS_ID" Type="Int16" Nullable="false" />
+          <Property Name="VERSION_NO" Type="Int32" Nullable="false" />
+          <Property Name="OFFICE_CODE_ID" Type="Int16" />
+          <Property Name="p_code" Type="Int32" />
+          <NavigationProperty Name="accounts" Relationship="Self.account_ibfk_5" FromRole="office" ToRole="account" />
+          <NavigationProperty Name="office1" Relationship="Self.office_ibfk_2" FromRole="office" ToRole="office1" />
+          <NavigationProperty Name="office2" Relationship="Self.office_ibfk_2" FromRole="office1" ToRole="office" />
+          <NavigationProperty Name="personnels" Relationship="Self.personnel_ibfk_1" FromRole="office" ToRole="personnel" />
+          <NavigationProperty Name="prd_offering" Relationship="Self.prd_offering_ibfk_2" FromRole="office" ToRole="prd_offering" />
+          <NavigationProperty Name="customers" Relationship="mifosEntityModel.customer_ibfk_3" FromRole="office" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="personnel">
+          <Key>
+            <PropertyRef Name="PERSONNEL_ID" />
+          </Key>
+          <Property Name="PERSONNEL_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LEVEL_ID" Type="Int16" Nullable="false" />
+          <Property Name="GLOBAL_PERSONNEL_NUM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OFFICE_ID" Type="Int16" />
+          <Property Name="TITLE" Type="Int32" />
+          <Property Name="PERSONNEL_STATUS" Type="Int16" />
+          <Property Name="PREFERRED_LOCALE" Type="Int16" />
+          <Property Name="site_preference" Type="Int16" />
+          <Property Name="SEARCH_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MAX_CHILD_COUNT" Type="Int32" />
+          <Property Name="PASSWORD" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="LOGIN_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_ID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD_CHANGED" Type="Int16" Nullable="false" />
+          <Property Name="DISPLAY_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_BY" Type="Int16" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="Int16" />
+          <Property Name="UPDATED_DATE" Type="DateTime" />
+          <Property Name="LAST_LOGIN" Type="DateTime" />
+          <Property Name="LOCKED" Type="Int16" Nullable="false" />
+          <Property Name="NO_OF_TRIES" Type="Int16" Nullable="false" />
+          <Property Name="VERSION_NO" Type="Int32" Nullable="false" />
+          <Property Name="password_expiration_date" Type="DateTime" />
+          <Property Name="p_Code" Type="Int32" />
+          <NavigationProperty Name="accounts" Relationship="Self.account_ibfk_4" FromRole="personnel" ToRole="account" />
+          <NavigationProperty Name="customer_flag_detail" Relationship="Self.customer_flag_detail_ibfk_3" FromRole="personnel" ToRole="customer_flag_detail" />
+          <NavigationProperty Name="customer_note" Relationship="Self.customer_note_ibfk_2" FromRole="personnel" ToRole="customer_note" />
+          <NavigationProperty Name="lookup_value" Relationship="Self.personnel_ibfk_5" FromRole="personnel" ToRole="lookup_value" />
+          <NavigationProperty Name="office" Relationship="Self.personnel_ibfk_1" FromRole="personnel" ToRole="office" />
+          <NavigationProperty Name="personnel1" Relationship="Self.personnel_ibfk_2" FromRole="personnel" ToRole="personnel1" />
+          <NavigationProperty Name="personnel2" Relationship="Self.personnel_ibfk_2" FromRole="personnel1" ToRole="personnel" />
+          <NavigationProperty Name="personnel11" Relationship="Self.personnel_ibfk_6" FromRole="personnel" ToRole="personnel1" />
+          <NavigationProperty Name="personnel3" Relationship="Self.personnel_ibfk_6" FromRole="personnel1" ToRole="personnel" />
+          <NavigationProperty Name="customers" Relationship="mifosEntityModel.customer_ibfk_4" FromRole="personnel" ToRole="customer" />
+          <NavigationProperty Name="customers1" Relationship="mifosEntityModel.customer_ibfk_5" FromRole="personnel" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="prd_offering">
+          <Key>
+            <PropertyRef Name="PRD_OFFERING_ID" />
+          </Key>
+          <Property Name="PRD_OFFERING_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRD_APPLICABLE_MASTER_ID" Type="Int16" Nullable="false" />
+          <Property Name="GLOBAL_PRD_OFFERING_NUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRD_CATEGORY_ID" Type="Int16" Nullable="false" />
+          <Property Name="PRD_TYPE_ID" Type="Int16" />
+          <Property Name="OFFICE_ID" Type="Int16" />
+          <Property Name="START_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="END_DATE" Type="DateTime" />
+          <Property Name="GLCODE_ID" Type="Int16" />
+          <Property Name="PRD_OFFERING_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRD_OFFERING_SHORT_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OFFERING_STATUS_ID" Type="Int16" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="CREATED_BY" Type="Int32" Nullable="false" />
+          <Property Name="UPDATED_DATE" Type="DateTime" />
+          <Property Name="UPDATED_BY" Type="Int32" />
+          <Property Name="VERSION_NO" Type="Int32" />
+          <Property Name="PRD_MIX_FLAG" Type="Int16" />
+          <Property Name="CURRENCY_ID" Type="Int16" />
+          <NavigationProperty Name="loan_account" Relationship="Self.fk_loan_prd_off_id" FromRole="prd_offering" ToRole="loan_account" />
+          <NavigationProperty Name="office" Relationship="Self.prd_offering_ibfk_2" FromRole="prd_offering" ToRole="office" />
+        </EntityType>
+        <Association Name="account_ibfk_1">
+          <End Role="account_state" Type="Self.account_state" Multiplicity="0..1" />
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account_state">
+              <PropertyRef Name="ACCOUNT_STATE_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="ACCOUNT_STATE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_ibfk_4">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_ibfk_5">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="account" Type="Self.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_acc_id">
+          <End Role="account" Type="Self.account" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="PARENT_ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="loan_account_ibfk_1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="loan_schedule_ibfk_1">
+          <End Role="account" Type="Self.account" Multiplicity="1" />
+          <End Role="loan_schedule" Type="Self.loan_schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_schedule">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="account_state_ibfk_1">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="1" />
+          <End Role="account_state" Type="Self.account_state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="account_state">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_2">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="CITIZENSHIP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_3">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="EDUCATION_LEVEL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_4">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="ethnicity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_5">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="HANDICAPPED" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_6">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="MARITAL_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_7">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_detail" Type="Self.customer_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="POVERTY_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_flag_detail_ibfk_2">
+          <End Role="customer_state_flag" Type="Self.customer_state_flag" Multiplicity="1" />
+          <End Role="customer_flag_detail" Type="Self.customer_flag_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer_state_flag">
+              <PropertyRef Name="FLAG_ID" />
+            </Principal>
+            <Dependent Role="customer_flag_detail">
+              <PropertyRef Name="FLAG_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_flag_detail_ibfk_3">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="customer_flag_detail" Type="Self.customer_flag_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer_flag_detail">
+              <PropertyRef Name="CREATED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_name_detail_ibfk_2">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="customer_name_detail" Type="Self.customer_name_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_name_detail">
+              <PropertyRef Name="SALUTATION" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_note_ibfk_2">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+          <End Role="customer_note" Type="Self.customer_note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer_note">
+              <PropertyRef Name="FIELD_OFFICER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_state_flag_ibfk_2">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="1" />
+          <End Role="customer_state_flag" Type="Self.customer_state_flag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_state_flag">
+              <PropertyRef Name="FLAG_LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_account">
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="0..1" />
+          <End Role="loan_account1" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loan_account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="loan_account1">
+              <PropertyRef Name="PARENT_ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_bus_act_id">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="BUSINESS_ACTIVITIES_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_col_type_id">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="COLLATERAL_TYPE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_loan_prd_off_id">
+          <End Role="prd_offering" Type="Self.prd_offering" Multiplicity="0..1" />
+          <End Role="loan_account" Type="Self.loan_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="prd_offering">
+              <PropertyRef Name="PRD_OFFERING_ID" />
+            </Principal>
+            <Dependent Role="loan_account">
+              <PropertyRef Name="PRD_OFFERING_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="lookup_value_locale_ibfk_1">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="1" />
+          <End Role="lookup_value_locale" Type="Self.lookup_value_locale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="lookup_value_locale">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_5">
+          <End Role="lookup_value" Type="Self.lookup_value" Multiplicity="0..1" />
+          <End Role="personnel" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="personnel">
+              <PropertyRef Name="TITLE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="office_ibfk_2">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="office1" Type="Self.office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="office1">
+              <PropertyRef Name="PARENT_OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_1">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="personnel" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="personnel">
+              <PropertyRef Name="OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prd_offering_ibfk_2">
+          <End Role="office" Type="Self.office" Multiplicity="0..1" />
+          <End Role="prd_offering" Type="Self.prd_offering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="prd_offering">
+              <PropertyRef Name="OFFICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_2">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="1" />
+          <End Role="personnel1" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="personnel1">
+              <PropertyRef Name="CREATED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="personnel_ibfk_6">
+          <End Role="personnel" Type="Self.personnel" Multiplicity="0..1" />
+          <End Role="personnel1" Type="Self.personnel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="personnel1">
+              <PropertyRef Name="UPDATED_BY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mifosEntitiesConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounts" EntityType="Self.account" />
+          <EntitySet Name="account_state" EntityType="Self.account_state" />
+          <EntitySet Name="customer_address_detail" EntityType="Self.customer_address_detail" />
+          <EntitySet Name="customer_detail" EntityType="Self.customer_detail" />
+          <EntitySet Name="customer_flag_detail" EntityType="Self.customer_flag_detail" />
+          <EntitySet Name="customer_name_detail" EntityType="Self.customer_name_detail" />
+          <EntitySet Name="customer_note" EntityType="Self.customer_note" />
+          <EntitySet Name="customer_state_flag" EntityType="Self.customer_state_flag" />
+          <EntitySet Name="loan_account" EntityType="Self.loan_account" />
+          <EntitySet Name="loan_schedule" EntityType="Self.loan_schedule" />
+          <EntitySet Name="lookup_value" EntityType="Self.lookup_value" />
+          <EntitySet Name="lookup_value_locale" EntityType="Self.lookup_value_locale" />
+          <EntitySet Name="offices" EntityType="Self.office" />
+          <EntitySet Name="personnels" EntityType="Self.personnel" />
+          <EntitySet Name="prd_offering" EntityType="Self.prd_offering" />
+          <AssociationSet Name="account_ibfk_1" Association="Self.account_ibfk_1">
+            <End Role="account_state" EntitySet="account_state" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="account_ibfk_4" Association="Self.account_ibfk_4">
+            <End Role="personnel" EntitySet="personnels" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="account_ibfk_5" Association="Self.account_ibfk_5">
+            <End Role="office" EntitySet="offices" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_acc_id" Association="Self.fk_loan_acc_id">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="loan_account_ibfk_1" Association="Self.loan_account_ibfk_1">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="loan_schedule_ibfk_1" Association="Self.loan_schedule_ibfk_1">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="loan_schedule" EntitySet="loan_schedule" />
+          </AssociationSet>
+          <AssociationSet Name="account_state_ibfk_1" Association="Self.account_state_ibfk_1">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="account_state" EntitySet="account_state" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_2" Association="Self.customer_detail_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_3" Association="Self.customer_detail_ibfk_3">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_4" Association="Self.customer_detail_ibfk_4">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_5" Association="Self.customer_detail_ibfk_5">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_6" Association="Self.customer_detail_ibfk_6">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_7" Association="Self.customer_detail_ibfk_7">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_flag_detail_ibfk_2" Association="Self.customer_flag_detail_ibfk_2">
+            <End Role="customer_state_flag" EntitySet="customer_state_flag" />
+            <End Role="customer_flag_detail" EntitySet="customer_flag_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_flag_detail_ibfk_3" Association="Self.customer_flag_detail_ibfk_3">
+            <End Role="personnel" EntitySet="personnels" />
+            <End Role="customer_flag_detail" EntitySet="customer_flag_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_name_detail_ibfk_2" Association="Self.customer_name_detail_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_name_detail" EntitySet="customer_name_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_note_ibfk_2" Association="Self.customer_note_ibfk_2">
+            <End Role="personnel" EntitySet="personnels" />
+            <End Role="customer_note" EntitySet="customer_note" />
+          </AssociationSet>
+          <AssociationSet Name="customer_state_flag_ibfk_2" Association="Self.customer_state_flag_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_state_flag" EntitySet="customer_state_flag" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_account" Association="Self.fk_loan_account">
+            <End Role="loan_account" EntitySet="loan_account" />
+            <End Role="loan_account1" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_bus_act_id" Association="Self.fk_loan_bus_act_id">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_col_type_id" Association="Self.fk_loan_col_type_id">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_loan_prd_off_id" Association="Self.fk_loan_prd_off_id">
+            <End Role="prd_offering" EntitySet="prd_offering" />
+            <End Role="loan_account" EntitySet="loan_account" />
+          </AssociationSet>
+          <AssociationSet Name="lookup_value_locale_ibfk_1" Association="Self.lookup_value_locale_ibfk_1">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="lookup_value_locale" EntitySet="lookup_value_locale" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_5" Association="Self.personnel_ibfk_5">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="personnel" EntitySet="personnels" />
+          </AssociationSet>
+          <AssociationSet Name="office_ibfk_2" Association="Self.office_ibfk_2">
+            <End Role="office" EntitySet="offices" />
+            <End Role="office1" EntitySet="offices" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_1" Association="Self.personnel_ibfk_1">
+            <End Role="office" EntitySet="offices" />
+            <End Role="personnel" EntitySet="personnels" />
+          </AssociationSet>
+          <AssociationSet Name="prd_offering_ibfk_2" Association="Self.prd_offering_ibfk_2">
+            <End Role="office" EntitySet="offices" />
+            <End Role="prd_offering" EntitySet="prd_offering" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_2" Association="Self.personnel_ibfk_2">
+            <End Role="personnel" EntitySet="personnels" />
+            <End Role="personnel1" EntitySet="personnels" />
+          </AssociationSet>
+          <AssociationSet Name="personnel_ibfk_6" Association="Self.personnel_ibfk_6">
+            <End Role="personnel" EntitySet="personnels" />
+            <End Role="personnel1" EntitySet="personnels" />
+          </AssociationSet>
+          <EntitySet Name="customer_state" EntityType="mifosEntityModel.customer_state" />
+          <AssociationSet Name="customer_state_flag_ibfk_1" Association="mifosEntityModel.customer_state_flag_ibfk_1">
+            <End Role="customer_state" EntitySet="customer_state" />
+            <End Role="customer_state_flag" EntitySet="customer_state_flag" />
+          </AssociationSet>
+          <AssociationSet Name="customer_state_ibfk_2" Association="mifosEntityModel.customer_state_ibfk_2">
+            <End Role="lookup_value" EntitySet="lookup_value" />
+            <End Role="customer_state" EntitySet="customer_state" />
+          </AssociationSet>
+          <EntitySet Name="customers" EntityType="mifosEntityModel.customer" />
+          <AssociationSet Name="account_ibfk_3" Association="mifosEntityModel.account_ibfk_3">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="account" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="customer_address_detail_ibfk_1" Association="mifosEntityModel.customer_address_detail_ibfk_1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customer_address_detail" EntitySet="customer_address_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_detail_ibfk_1" Association="mifosEntityModel.customer_detail_ibfk_1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customer_detail" EntitySet="customer_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_flag_detail_ibfk_1" Association="mifosEntityModel.customer_flag_detail_ibfk_1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customer_flag_detail" EntitySet="customer_flag_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_2" Association="mifosEntityModel.customer_ibfk_2">
+            <End Role="customer_state" EntitySet="customer_state" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_3" Association="mifosEntityModel.customer_ibfk_3">
+            <End Role="office" EntitySet="offices" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_4" Association="mifosEntityModel.customer_ibfk_4">
+            <End Role="personnel" EntitySet="personnels" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_5" Association="mifosEntityModel.customer_ibfk_5">
+            <End Role="personnel" EntitySet="personnels" />
+            <End Role="customer" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="customer_ibfk_6" Association="mifosEntityModel.customer_ibfk_6">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customer1" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="customer_name_detail_ibfk_1" Association="mifosEntityModel.customer_name_detail_ibfk_1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customer_name_detail" EntitySet="customer_name_detail" />
+          </AssociationSet>
+          <AssociationSet Name="customer_note_ibfk_1" Association="mifosEntityModel.customer_note_ibfk_1">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="customer_note" EntitySet="customer_note" />
+          </AssociationSet>
+          <AssociationSet Name="loan_schedule_ibfk_13" Association="mifosEntityModel.loan_schedule_ibfk_13">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="loan_schedule" EntitySet="loan_schedule" />
+          </AssociationSet>
+          <EntitySet Name="rec_entity" EntityType="mifosEntityModel.rec_entity" />
+          <EntitySet Name="rec_lookupvalue" EntityType="mifosEntityModel.rec_lookupvalue" />
+          <AssociationSet Name="ent" Association="mifosEntityModel.ent">
+            <End Role="rec_entity" EntitySet="rec_entity" />
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+          </AssociationSet>
+          <EntitySet Name="rec_collection" EntityType="mifosEntityModel.rec_collection" />
+          <AssociationSet Name="Acc" Association="mifosEntityModel.Acc">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+          <AssociationSet Name="collorlegal" Association="mifosEntityModel.collorlegal">
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+          <AssociationSet Name="fllow" Association="mifosEntityModel.fllow">
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+          <AssociationSet Name="tyeee" Association="mifosEntityModel.tyeee">
+            <End Role="rec_lookupvalue" EntitySet="rec_lookupvalue" />
+            <End Role="rec_collection" EntitySet="rec_collection" />
+          </AssociationSet>
+          <EntitySet Name="rec_payment" EntityType="mifosEntityModel.rec_payment" />
+          <AssociationSet Name="accasdasd" Association="mifosEntityModel.accasdasd">
+            <End Role="account" EntitySet="accounts" />
+            <End Role="rec_payment" EntitySet="rec_payment" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="customer_state">
+          <Key>
+            <PropertyRef Name="STATUS_ID" />
+          </Key>
+          <Property Name="STATUS_ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="STATUS_LOOKUP_ID" Type="Int32" Nullable="false" />
+          <Property Name="LEVEL_ID" Type="Int16" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CURRENTLY_IN_USE" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="customer_state_flag" Relationship="mifosEntityModel.customer_state_flag_ibfk_1" FromRole="customer_state" ToRole="customer_state_flag" />
+          <NavigationProperty Name="lookup_value" Relationship="mifosEntityModel.customer_state_ibfk_2" FromRole="customer_state" ToRole="lookup_value" />
+          <NavigationProperty Name="customers" Relationship="mifosEntityModel.customer_ibfk_2" FromRole="customer_state" ToRole="customer" />
+        </EntityType>
+        <Association Name="customer_state_flag_ibfk_1">
+          <End Type="mifosEntityModel.customer_state" Role="customer_state" Multiplicity="1" />
+          <End Type="mifosEntityModel.customer_state_flag" Role="customer_state_flag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer_state">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="customer_state_flag">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_state_ibfk_2">
+          <End Type="mifosEntityModel.lookup_value" Role="lookup_value" Multiplicity="1" />
+          <End Type="mifosEntityModel.customer_state" Role="customer_state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookup_value">
+              <PropertyRef Name="LOOKUP_ID" />
+            </Principal>
+            <Dependent Role="customer_state">
+              <PropertyRef Name="STATUS_LOOKUP_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_LEVEL_ID" Type="Int16" Nullable="false" />
+          <Property Name="GLOBAL_CUST_NUM" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LOAN_OFFICER_ID" Type="Int16" />
+          <Property Name="CUSTOMER_FORMEDBY_ID" Type="Int16" />
+          <Property Name="STATUS_ID" Type="Int16" />
+          <Property Name="BRANCH_ID" Type="Int16" />
+          <Property Name="DISPLAY_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SECOND_LAST_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DISPLAY_ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EXTERNAL_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_OF_BIRTH" Type="DateTime" />
+          <Property Name="GROUP_FLAG" Type="Int16" />
+          <Property Name="TRAINED" Type="Int16" />
+          <Property Name="TRAINED_DATE" Type="DateTime" />
+          <Property Name="PARENT_CUSTOMER_ID" Type="Int32" />
+          <Property Name="CREATED_DATE" Type="DateTime" />
+          <Property Name="UPDATED_DATE" Type="DateTime" />
+          <Property Name="SEARCH_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MAX_CHILD_COUNT" Type="Int32" />
+          <Property Name="HO_UPDATED" Type="Int16" />
+          <Property Name="CLIENT_CONFIDENTIAL" Type="Int16" />
+          <Property Name="MFI_JOINING_DATE" Type="DateTime" />
+          <Property Name="GOVERNMENT_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CUSTOMER_ACTIVATION_DATE" Type="DateTime" />
+          <Property Name="CREATED_BY" Type="Int16" />
+          <Property Name="UPDATED_BY" Type="Int16" />
+          <Property Name="BLACKLISTED" Type="Int16" />
+          <Property Name="DISCRIMINATOR" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VERSION_NO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="accounts" Relationship="mifosEntityModel.account_ibfk_3" FromRole="customer" ToRole="account" />
+          <NavigationProperty Name="customer_address_detail" Relationship="mifosEntityModel.customer_address_detail_ibfk_1" FromRole="customer" ToRole="customer_address_detail" />
+          <NavigationProperty Name="customer_detail" Relationship="mifosEntityModel.customer_detail_ibfk_1" FromRole="customer" ToRole="customer_detail" />
+          <NavigationProperty Name="customer_flag_detail" Relationship="mifosEntityModel.customer_flag_detail_ibfk_1" FromRole="customer" ToRole="customer_flag_detail" />
+          <NavigationProperty Name="customer_state" Relationship="mifosEntityModel.customer_ibfk_2" FromRole="customer" ToRole="customer_state" />
+          <NavigationProperty Name="office" Relationship="mifosEntityModel.customer_ibfk_3" FromRole="customer" ToRole="office" />
+          <NavigationProperty Name="personnel" Relationship="mifosEntityModel.customer_ibfk_4" FromRole="customer" ToRole="personnel" />
+          <NavigationProperty Name="personnel1" Relationship="mifosEntityModel.customer_ibfk_5" FromRole="customer" ToRole="personnel" />
+          <NavigationProperty Name="customer1" Relationship="mifosEntityModel.customer_ibfk_6" FromRole="customer" ToRole="customer1" />
+          <NavigationProperty Name="customer2" Relationship="mifosEntityModel.customer_ibfk_6" FromRole="customer1" ToRole="customer" />
+          <NavigationProperty Name="customer_name_detail" Relationship="mifosEntityModel.customer_name_detail_ibfk_1" FromRole="customer" ToRole="customer_name_detail" />
+          <NavigationProperty Name="customer_note" Relationship="mifosEntityModel.customer_note_ibfk_1" FromRole="customer" ToRole="customer_note" />
+          <NavigationProperty Name="loan_schedule" Relationship="mifosEntityModel.loan_schedule_ibfk_13" FromRole="customer" ToRole="loan_schedule" />
+        </EntityType>
+        <Association Name="account_ibfk_3">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.account" Role="account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="account">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_address_detail_ibfk_1">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.customer_address_detail" Role="customer_address_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_address_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_detail_ibfk_1">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="mifosEntityModel.customer_detail" Role="customer_detail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_flag_detail_ibfk_1">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="mifosEntityModel.customer_flag_detail" Role="customer_flag_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_flag_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_2">
+          <End Type="mifosEntityModel.customer_state" Role="customer_state" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer_state">
+              <PropertyRef Name="STATUS_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="STATUS_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_3">
+          <End Type="mifosEntityModel.office" Role="office" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="office">
+              <PropertyRef Name="OFFICE_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="BRANCH_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_4">
+          <End Type="mifosEntityModel.personnel" Role="personnel" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="LOAN_OFFICER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_5">
+          <End Type="mifosEntityModel.personnel" Role="personnel" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personnel">
+              <PropertyRef Name="PERSONNEL_ID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="CUSTOMER_FORMEDBY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_ibfk_6">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.customer" Role="customer1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer1">
+              <PropertyRef Name="PARENT_CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_name_detail_ibfk_1">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="mifosEntityModel.customer_name_detail" Role="customer_name_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_name_detail">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="customer_note_ibfk_1">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="mifosEntityModel.customer_note" Role="customer_note" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="customer_note">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="loan_schedule_ibfk_13">
+          <End Type="mifosEntityModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="mifosEntityModel.loan_schedule" Role="loan_schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="loan_schedule">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="rec_entity">
+          <Key>
+            <PropertyRef Name="EntityID" />
+          </Key>
+          <Property Name="EntityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="rec_lookupvalue" Relationship="mifosEntityModel.ent" FromRole="rec_entity" ToRole="rec_lookupvalue" />
+        </EntityType>
+        <EntityType Name="rec_lookupvalue">
+          <Key>
+            <PropertyRef Name="LookupValueId" />
+          </Key>
+          <Property Name="LookupValueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntityId" Type="Int32" />
+          <Property Name="lookupValueName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="rec_entity" Relationship="mifosEntityModel.ent" FromRole="rec_lookupvalue" ToRole="rec_entity" />
+          <NavigationProperty Name="rec_collection" Relationship="mifosEntityModel.collorlegal" FromRole="rec_lookupvalue" ToRole="rec_collection" />
+          <NavigationProperty Name="rec_collection1" Relationship="mifosEntityModel.fllow" FromRole="rec_lookupvalue" ToRole="rec_collection" />
+          <NavigationProperty Name="rec_collection2" Relationship="mifosEntityModel.tyeee" FromRole="rec_lookupvalue" ToRole="rec_collection" />
+          </EntityType>
+        <Association Name="ent">
+          <End Type="mifosEntityModel.rec_entity" Role="rec_entity" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mifosEntityModel.rec_lookupvalue" Role="rec_lookupvalue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_entity">
+              <PropertyRef Name="EntityID" />
+            </Principal>
+            <Dependent Role="rec_lookupvalue">
+              <PropertyRef Name="EntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="rec_collection">
+          <Key>
+            <PropertyRef Name="Account_id" />
+          </Key>
+          <Property Name="Account_id" Type="Int32" Nullable="false" />
+          <Property Name="CollOrLegal" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="DateOfTransfer" Type="DateTime" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" />
+          <Property Name="TypeFollowup" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="mifosEntityModel.Acc" FromRole="rec_collection" ToRole="account" />
+          <NavigationProperty Name="rec_lookupvalue" Relationship="mifosEntityModel.collorlegal" FromRole="rec_collection" ToRole="rec_lookupvalue" />
+          <NavigationProperty Name="rec_lookupvalue1" Relationship="mifosEntityModel.fllow" FromRole="rec_collection" ToRole="rec_lookupvalue" />
+          <NavigationProperty Name="rec_lookupvalue2" Relationship="mifosEntityModel.tyeee" FromRole="rec_collection" ToRole="rec_lookupvalue" />
+        </EntityType>
+        <Association Name="Acc">
+          <End Type="mifosEntityModel.account" Role="account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mifosEntityModel.rec_collection" Role="rec_collection" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="Account_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="collorlegal">
+          <End Type="mifosEntityModel.rec_lookupvalue" Role="rec_lookupvalue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mifosEntityModel.rec_collection" Role="rec_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_lookupvalue">
+              <PropertyRef Name="LookupValueId" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="CollOrLegal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fllow">
+          <End Type="mifosEntityModel.rec_lookupvalue" Role="rec_lookupvalue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mifosEntityModel.rec_collection" Role="rec_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_lookupvalue">
+              <PropertyRef Name="LookupValueId" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="TypeFollowup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tyeee">
+          <End Type="mifosEntityModel.rec_lookupvalue" Role="rec_lookupvalue" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mifosEntityModel.rec_collection" Role="rec_collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rec_lookupvalue">
+              <PropertyRef Name="LookupValueId" />
+            </Principal>
+            <Dependent Role="rec_collection">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="rec_payment">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentAmount" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="mifosEntityModel.accasdasd" FromRole="rec_payment" ToRole="account" />
+        </EntityType>
+        <Association Name="accasdasd">
+          <End Type="mifosEntityModel.account" Role="account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="mifosEntityModel.rec_payment" Role="rec_payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="account">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="rec_payment">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mifosEntityModelStoreContainer" CdmEntityContainer="mifosEntitiesConnection">
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="mifosEntityModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="GLOBAL_ACCOUNT_NUM" ColumnName="GLOBAL_ACCOUNT_NUM" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ACCOUNT_STATE_ID" ColumnName="ACCOUNT_STATE_ID" />
+                <ScalarProperty Name="ACCOUNT_TYPE_ID" ColumnName="ACCOUNT_TYPE_ID" />
+                <ScalarProperty Name="OFFICE_ID" ColumnName="OFFICE_ID" />
+                <ScalarProperty Name="PERSONNEL_ID" ColumnName="PERSONNEL_ID" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="CLOSED_DATE" ColumnName="CLOSED_DATE" />
+                <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+                <ScalarProperty Name="OFFSETTING_ALLOWABLE" ColumnName="OFFSETTING_ALLOWABLE" />
+                <ScalarProperty Name="EXTERNAL_ID" ColumnName="EXTERNAL_ID" />
+                <ScalarProperty Name="Last_personnel_id" ColumnName="Last_personnel_id" />
+                <ScalarProperty Name="ACCOUNT_CREATED_DATE" ColumnName="ACCOUNT_CREATED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="account_state">
+            <EntityTypeMapping TypeName="mifosEntityModel.account_state">
+              <MappingFragment StoreEntitySet="account_state">
+                <ScalarProperty Name="ACCOUNT_STATE_ID" ColumnName="ACCOUNT_STATE_ID" />
+                <ScalarProperty Name="LOOKUP_ID" ColumnName="LOOKUP_ID" />
+                <ScalarProperty Name="PRD_TYPE_ID" ColumnName="PRD_TYPE_ID" />
+                <ScalarProperty Name="CURRENTLY_IN_USE" ColumnName="CURRENTLY_IN_USE" />
+                <ScalarProperty Name="STATUS_DESCRIPTION" ColumnName="STATUS_DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_address_detail">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer_address_detail">
+              <MappingFragment StoreEntitySet="customer_address_detail">
+                <ScalarProperty Name="CUSTOMER_ADDRESS_ID" ColumnName="CUSTOMER_ADDRESS_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="LOCALE_ID" ColumnName="LOCALE_ID" />
+                <ScalarProperty Name="ADDRESS_NAME" ColumnName="ADDRESS_NAME" />
+                <ScalarProperty Name="LINE_1" ColumnName="LINE_1" />
+                <ScalarProperty Name="LINE_2" ColumnName="LINE_2" />
+                <ScalarProperty Name="LINE_3" ColumnName="LINE_3" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ADDRESS_STATUS" ColumnName="ADDRESS_STATUS" />
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+                <ScalarProperty Name="phone_number_stripped" ColumnName="phone_number_stripped" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_detail">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer_detail">
+              <MappingFragment StoreEntitySet="customer_detail">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ethnicity" ColumnName="ethnicity" />
+                <ScalarProperty Name="CITIZENSHIP" ColumnName="CITIZENSHIP" />
+                <ScalarProperty Name="HANDICAPPED" ColumnName="HANDICAPPED" />
+                <ScalarProperty Name="BUSINESS_ACTIVITIES" ColumnName="BUSINESS_ACTIVITIES" />
+                <ScalarProperty Name="MARITAL_STATUS" ColumnName="MARITAL_STATUS" />
+                <ScalarProperty Name="EDUCATION_LEVEL" ColumnName="EDUCATION_LEVEL" />
+                <ScalarProperty Name="NUM_CHILDREN" ColumnName="NUM_CHILDREN" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+                <ScalarProperty Name="DATE_STARTED" ColumnName="DATE_STARTED" />
+                <ScalarProperty Name="HANDICAPPED_DETAILS" ColumnName="HANDICAPPED_DETAILS" />
+                <ScalarProperty Name="POVERTY_STATUS" ColumnName="POVERTY_STATUS" />
+                <ScalarProperty Name="POVERTY_LHOOD_PCT" ColumnName="POVERTY_LHOOD_PCT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_flag_detail">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer_flag_detail">
+              <MappingFragment StoreEntitySet="customer_flag_detail">
+                <ScalarProperty Name="CUSTOMER_FLAG_ID" ColumnName="CUSTOMER_FLAG_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="FLAG_ID" ColumnName="FLAG_ID" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_name_detail">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer_name_detail">
+              <MappingFragment StoreEntitySet="customer_name_detail">
+                <ScalarProperty Name="CUSTOMER_NAME_ID" ColumnName="CUSTOMER_NAME_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="NAME_TYPE" ColumnName="NAME_TYPE" />
+                <ScalarProperty Name="LOCALE_ID" ColumnName="LOCALE_ID" />
+                <ScalarProperty Name="SALUTATION" ColumnName="SALUTATION" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="SECOND_LAST_NAME" ColumnName="SECOND_LAST_NAME" />
+                <ScalarProperty Name="SECOND_MIDDLE_NAME" ColumnName="SECOND_MIDDLE_NAME" />
+                <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_note">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer_note">
+              <MappingFragment StoreEntitySet="customer_note">
+                <ScalarProperty Name="COMMENT_ID" ColumnName="COMMENT_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="FIELD_OFFICER_ID" ColumnName="FIELD_OFFICER_ID" />
+                <ScalarProperty Name="COMMENT_DATE" ColumnName="COMMENT_DATE" />
+                <ScalarProperty Name="COMMENT" ColumnName="COMMENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_state_flag">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer_state_flag">
+              <MappingFragment StoreEntitySet="customer_state_flag">
+                <ScalarProperty Name="FLAG_ID" ColumnName="FLAG_ID" />
+                <ScalarProperty Name="FLAG_LOOKUP_ID" ColumnName="FLAG_LOOKUP_ID" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="FLAG_DESCRIPTION" ColumnName="FLAG_DESCRIPTION" />
+                <ScalarProperty Name="ISBLACKLISTED" ColumnName="ISBLACKLISTED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loan_account">
+            <EntityTypeMapping TypeName="mifosEntityModel.loan_account">
+              <MappingFragment StoreEntitySet="loan_account">
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="BUSINESS_ACTIVITIES_ID" ColumnName="BUSINESS_ACTIVITIES_ID" />
+                <ScalarProperty Name="COLLATERAL_TYPE_ID" ColumnName="COLLATERAL_TYPE_ID" />
+                <ScalarProperty Name="GRACE_PERIOD_TYPE_ID" ColumnName="GRACE_PERIOD_TYPE_ID" />
+                <ScalarProperty Name="GROUP_FLAG" ColumnName="GROUP_FLAG" />
+                <ScalarProperty Name="LOAN_AMOUNT" ColumnName="LOAN_AMOUNT" />
+                <ScalarProperty Name="LOAN_AMOUNT_CURRENCY_ID" ColumnName="LOAN_AMOUNT_CURRENCY_ID" />
+                <ScalarProperty Name="LOAN_BALANCE" ColumnName="LOAN_BALANCE" />
+                <ScalarProperty Name="LOAN_BALANCE_CURRENCY_ID" ColumnName="LOAN_BALANCE_CURRENCY_ID" />
+                <ScalarProperty Name="INTEREST_TYPE_ID" ColumnName="INTEREST_TYPE_ID" />
+                <ScalarProperty Name="INTEREST_RATE" ColumnName="INTEREST_RATE" />
+                <ScalarProperty Name="FUND_ID" ColumnName="FUND_ID" />
+                <ScalarProperty Name="MEETING_ID" ColumnName="MEETING_ID" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="NO_OF_INSTALLMENTS" ColumnName="NO_OF_INSTALLMENTS" />
+                <ScalarProperty Name="DISBURSEMENT_DATE" ColumnName="DISBURSEMENT_DATE" />
+                <ScalarProperty Name="collateral_note" ColumnName="collateral_note" />
+                <ScalarProperty Name="GRACE_PERIOD_DURATION" ColumnName="GRACE_PERIOD_DURATION" />
+                <ScalarProperty Name="INTEREST_AT_DISB" ColumnName="INTEREST_AT_DISB" />
+                <ScalarProperty Name="GRACE_PERIOD_PENALTY" ColumnName="GRACE_PERIOD_PENALTY" />
+                <ScalarProperty Name="PRD_OFFERING_ID" ColumnName="PRD_OFFERING_ID" />
+                <ScalarProperty Name="REDONE" ColumnName="REDONE" />
+                <ScalarProperty Name="PARENT_ACCOUNT_ID" ColumnName="PARENT_ACCOUNT_ID" />
+                <ScalarProperty Name="MONTH_RANK" ColumnName="MONTH_RANK" />
+                <ScalarProperty Name="MONTH_WEEK" ColumnName="MONTH_WEEK" />
+                <ScalarProperty Name="RECUR_MONTH" ColumnName="RECUR_MONTH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loan_schedule">
+            <EntityTypeMapping TypeName="mifosEntityModel.loan_schedule">
+              <MappingFragment StoreEntitySet="loan_schedule">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+                <ScalarProperty Name="ACTION_DATE" ColumnName="ACTION_DATE" />
+                <ScalarProperty Name="PRINCIPAL" ColumnName="PRINCIPAL" />
+                <ScalarProperty Name="PRINCIPAL_CURRENCY_ID" ColumnName="PRINCIPAL_CURRENCY_ID" />
+                <ScalarProperty Name="INTEREST" ColumnName="INTEREST" />
+                <ScalarProperty Name="INTEREST_CURRENCY_ID" ColumnName="INTEREST_CURRENCY_ID" />
+                <ScalarProperty Name="PENALTY" ColumnName="PENALTY" />
+                <ScalarProperty Name="PENALTY_CURRENCY_ID" ColumnName="PENALTY_CURRENCY_ID" />
+                <ScalarProperty Name="MISC_FEES" ColumnName="MISC_FEES" />
+                <ScalarProperty Name="MISC_FEES_CURRENCY_ID" ColumnName="MISC_FEES_CURRENCY_ID" />
+                <ScalarProperty Name="MISC_FEES_PAID" ColumnName="MISC_FEES_PAID" />
+                <ScalarProperty Name="MISC_FEES_PAID_CURRENCY_ID" ColumnName="MISC_FEES_PAID_CURRENCY_ID" />
+                <ScalarProperty Name="MISC_PENALTY" ColumnName="MISC_PENALTY" />
+                <ScalarProperty Name="MISC_PENALTY_CURRENCY_ID" ColumnName="MISC_PENALTY_CURRENCY_ID" />
+                <ScalarProperty Name="MISC_PENALTY_PAID" ColumnName="MISC_PENALTY_PAID" />
+                <ScalarProperty Name="MISC_PENALTY_PAID_CURRENCY_ID" ColumnName="MISC_PENALTY_PAID_CURRENCY_ID" />
+                <ScalarProperty Name="PRINCIPAL_PAID" ColumnName="PRINCIPAL_PAID" />
+                <ScalarProperty Name="PRINCIPAL_PAID_CURRENCY_ID" ColumnName="PRINCIPAL_PAID_CURRENCY_ID" />
+                <ScalarProperty Name="INTEREST_PAID" ColumnName="INTEREST_PAID" />
+                <ScalarProperty Name="INTEREST_PAID_CURRENCY_ID" ColumnName="INTEREST_PAID_CURRENCY_ID" />
+                <ScalarProperty Name="PENALTY_PAID" ColumnName="PENALTY_PAID" />
+                <ScalarProperty Name="PENALTY_PAID_CURRENCY_ID" ColumnName="PENALTY_PAID_CURRENCY_ID" />
+                <ScalarProperty Name="PAYMENT_STATUS" ColumnName="PAYMENT_STATUS" />
+                <ScalarProperty Name="INSTALLMENT_ID" ColumnName="INSTALLMENT_ID" />
+                <ScalarProperty Name="PAYMENT_DATE" ColumnName="PAYMENT_DATE" />
+                <ScalarProperty Name="PARENT_FLAG" ColumnName="PARENT_FLAG" />
+                <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+                <ScalarProperty Name="extra_interest" ColumnName="extra_interest" />
+                <ScalarProperty Name="extra_interest_currency_id" ColumnName="extra_interest_currency_id" />
+                <ScalarProperty Name="extra_interest_paid" ColumnName="extra_interest_paid" />
+                <ScalarProperty Name="extra_interest_paid_currency_id" ColumnName="extra_interest_paid_currency_id" />
+                <ScalarProperty Name="last_updated" ColumnName="last_updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lookup_value">
+            <EntityTypeMapping TypeName="mifosEntityModel.lookup_value">
+              <MappingFragment StoreEntitySet="lookup_value">
+                <ScalarProperty Name="LOOKUP_ID" ColumnName="LOOKUP_ID" />
+                <ScalarProperty Name="ENTITY_ID" ColumnName="ENTITY_ID" />
+                <ScalarProperty Name="LOOKUP_NAME" ColumnName="LOOKUP_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lookup_value_locale">
+            <EntityTypeMapping TypeName="mifosEntityModel.lookup_value_locale">
+              <MappingFragment StoreEntitySet="lookup_value_locale">
+                <ScalarProperty Name="LOOKUP_VALUE_ID" ColumnName="LOOKUP_VALUE_ID" />
+                <ScalarProperty Name="LOCALE_ID" ColumnName="LOCALE_ID" />
+                <ScalarProperty Name="LOOKUP_ID" ColumnName="LOOKUP_ID" />
+                <ScalarProperty Name="LOOKUP_VALUE" ColumnName="LOOKUP_VALUE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="offices">
+            <EntityTypeMapping TypeName="mifosEntityModel.office">
+              <MappingFragment StoreEntitySet="office">
+                <ScalarProperty Name="OFFICE_ID" ColumnName="OFFICE_ID" />
+                <ScalarProperty Name="GLOBAL_OFFICE_NUM" ColumnName="GLOBAL_OFFICE_NUM" />
+                <ScalarProperty Name="OFFICE_LEVEL_ID" ColumnName="OFFICE_LEVEL_ID" />
+                <ScalarProperty Name="SEARCH_ID" ColumnName="SEARCH_ID" />
+                <ScalarProperty Name="MAX_CHILD_COUNT" ColumnName="MAX_CHILD_COUNT" />
+                <ScalarProperty Name="LOCAL_REMOTE_FLAG" ColumnName="LOCAL_REMOTE_FLAG" />
+                <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="OFFICE_SHORT_NAME" ColumnName="OFFICE_SHORT_NAME" />
+                <ScalarProperty Name="PARENT_OFFICE_ID" ColumnName="PARENT_OFFICE_ID" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+                <ScalarProperty Name="OFFICE_CODE_ID" ColumnName="OFFICE_CODE_ID" />
+                <ScalarProperty Name="p_code" ColumnName="p_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personnels">
+            <EntityTypeMapping TypeName="mifosEntityModel.personnel">
+              <MappingFragment StoreEntitySet="personnel">
+                <ScalarProperty Name="PERSONNEL_ID" ColumnName="PERSONNEL_ID" />
+                <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+                <ScalarProperty Name="GLOBAL_PERSONNEL_NUM" ColumnName="GLOBAL_PERSONNEL_NUM" />
+                <ScalarProperty Name="OFFICE_ID" ColumnName="OFFICE_ID" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="PERSONNEL_STATUS" ColumnName="PERSONNEL_STATUS" />
+                <ScalarProperty Name="PREFERRED_LOCALE" ColumnName="PREFERRED_LOCALE" />
+                <ScalarProperty Name="site_preference" ColumnName="site_preference" />
+                <ScalarProperty Name="SEARCH_ID" ColumnName="SEARCH_ID" />
+                <ScalarProperty Name="MAX_CHILD_COUNT" ColumnName="MAX_CHILD_COUNT" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="LOGIN_NAME" ColumnName="LOGIN_NAME" />
+                <ScalarProperty Name="EMAIL_ID" ColumnName="EMAIL_ID" />
+                <ScalarProperty Name="PASSWORD_CHANGED" ColumnName="PASSWORD_CHANGED" />
+                <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="LAST_LOGIN" ColumnName="LAST_LOGIN" />
+                <ScalarProperty Name="LOCKED" ColumnName="LOCKED" />
+                <ScalarProperty Name="NO_OF_TRIES" ColumnName="NO_OF_TRIES" />
+                <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+                <ScalarProperty Name="password_expiration_date" ColumnName="password_expiration_date" />
+                <ScalarProperty Name="p_Code" ColumnName="p_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prd_offering">
+            <EntityTypeMapping TypeName="mifosEntityModel.prd_offering">
+              <MappingFragment StoreEntitySet="prd_offering">
+                <ScalarProperty Name="PRD_OFFERING_ID" ColumnName="PRD_OFFERING_ID" />
+                <ScalarProperty Name="PRD_APPLICABLE_MASTER_ID" ColumnName="PRD_APPLICABLE_MASTER_ID" />
+                <ScalarProperty Name="GLOBAL_PRD_OFFERING_NUM" ColumnName="GLOBAL_PRD_OFFERING_NUM" />
+                <ScalarProperty Name="PRD_CATEGORY_ID" ColumnName="PRD_CATEGORY_ID" />
+                <ScalarProperty Name="PRD_TYPE_ID" ColumnName="PRD_TYPE_ID" />
+                <ScalarProperty Name="OFFICE_ID" ColumnName="OFFICE_ID" />
+                <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+                <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+                <ScalarProperty Name="GLCODE_ID" ColumnName="GLCODE_ID" />
+                <ScalarProperty Name="PRD_OFFERING_NAME" ColumnName="PRD_OFFERING_NAME" />
+                <ScalarProperty Name="PRD_OFFERING_SHORT_NAME" ColumnName="PRD_OFFERING_SHORT_NAME" />
+                <ScalarProperty Name="OFFERING_STATUS_ID" ColumnName="OFFERING_STATUS_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+                <ScalarProperty Name="PRD_MIX_FLAG" ColumnName="PRD_MIX_FLAG" />
+                <ScalarProperty Name="CURRENCY_ID" ColumnName="CURRENCY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_state">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer_state">
+              <MappingFragment StoreEntitySet="customer_state">
+                <ScalarProperty Name="CURRENTLY_IN_USE" ColumnName="CURRENTLY_IN_USE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="LEVEL_ID" ColumnName="LEVEL_ID" />
+                <ScalarProperty Name="STATUS_LOOKUP_ID" ColumnName="STATUS_LOOKUP_ID" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="mifosEntityModel.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+                <ScalarProperty Name="DISCRIMINATOR" ColumnName="DISCRIMINATOR" />
+                <ScalarProperty Name="BLACKLISTED" ColumnName="BLACKLISTED" />
+                <ScalarProperty Name="UPDATED_BY" ColumnName="UPDATED_BY" />
+                <ScalarProperty Name="CREATED_BY" ColumnName="CREATED_BY" />
+                <ScalarProperty Name="CUSTOMER_ACTIVATION_DATE" ColumnName="CUSTOMER_ACTIVATION_DATE" />
+                <ScalarProperty Name="GOVERNMENT_ID" ColumnName="GOVERNMENT_ID" />
+                <ScalarProperty Name="MFI_JOINING_DATE" ColumnName="MFI_JOINING_DATE" />
+                <ScalarProperty Name="CLIENT_CONFIDENTIAL" ColumnName="CLIENT_CONFIDENTIAL" />
+                <ScalarProperty Name="HO_UPDATED" ColumnName="HO_UPDATED" />
+                <ScalarProperty Name="MAX_CHILD_COUNT" ColumnName="MAX_CHILD_COUNT" />
+                <ScalarProperty Name="SEARCH_ID" ColumnName="SEARCH_ID" />
+                <ScalarProperty Name="UPDATED_DATE" ColumnName="UPDATED_DATE" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="PARENT_CUSTOMER_ID" ColumnName="PARENT_CUSTOMER_ID" />
+                <ScalarProperty Name="TRAINED_DATE" ColumnName="TRAINED_DATE" />
+                <ScalarProperty Name="TRAINED" ColumnName="TRAINED" />
+                <ScalarProperty Name="GROUP_FLAG" ColumnName="GROUP_FLAG" />
+                <ScalarProperty Name="DATE_OF_BIRTH" ColumnName="DATE_OF_BIRTH" />
+                <ScalarProperty Name="EXTERNAL_ID" ColumnName="EXTERNAL_ID" />
+                <ScalarProperty Name="DISPLAY_ADDRESS" ColumnName="DISPLAY_ADDRESS" />
+                <ScalarProperty Name="SECOND_LAST_NAME" ColumnName="SECOND_LAST_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+                <ScalarProperty Name="BRANCH_ID" ColumnName="BRANCH_ID" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="CUSTOMER_FORMEDBY_ID" ColumnName="CUSTOMER_FORMEDBY_ID" />
+                <ScalarProperty Name="LOAN_OFFICER_ID" ColumnName="LOAN_OFFICER_ID" />
+                <ScalarProperty Name="GLOBAL_CUST_NUM" ColumnName="GLOBAL_CUST_NUM" />
+                <ScalarProperty Name="CUSTOMER_LEVEL_ID" ColumnName="CUSTOMER_LEVEL_ID" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rec_entity">
+            <EntityTypeMapping TypeName="mifosEntityModel.rec_entity">
+              <MappingFragment StoreEntitySet="rec_entity">
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="EntityID" ColumnName="EntityID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rec_lookupvalue">
+            <EntityTypeMapping TypeName="mifosEntityModel.rec_lookupvalue">
+              <MappingFragment StoreEntitySet="rec_lookupvalue">
+                <ScalarProperty Name="lookupValueName" ColumnName="lookupValueName" />
+                <ScalarProperty Name="EntityId" ColumnName="EntityId" />
+                <ScalarProperty Name="LookupValueId" ColumnName="LookupValueId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rec_collection">
+            <EntityTypeMapping TypeName="mifosEntityModel.rec_collection">
+              <MappingFragment StoreEntitySet="rec_collection">
+                <ScalarProperty Name="TypeFollowup" ColumnName="TypeFollowup" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="DateOfTransfer" ColumnName="DateOfTransfer" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CollOrLegal" ColumnName="CollOrLegal" />
+                <ScalarProperty Name="Account_id" ColumnName="Account_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rec_payment">
+            <EntityTypeMapping TypeName="mifosEntityModel.rec_payment">
+              <MappingFragment StoreEntitySet="rec_payment">
+                <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

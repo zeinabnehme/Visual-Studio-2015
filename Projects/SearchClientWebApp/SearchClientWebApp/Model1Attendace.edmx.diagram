@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3c53e725d5cf4d039c74f7d512b6e4a8" Name="Diagram1">
+        <EntityTypeShape EntityType="hrEntityModel.employee" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrEntityModel.timesheetyear2016" Width="1.5" PointX="6.125" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hrEntityModel.timesheetreason" Width="1.5" PointX="2.5" PointY="5.125" />
+        <EntityTypeShape EntityType="hrEntityModel.timesheetpresent" Width="1.5" PointX="3.5" PointY="1" />
+        <AssociationConnector Association="hrEntityModel.employIDD" />
+        <AssociationConnector Association="hrEntityModel.calende" />
+        <AssociationConnector Association="hrEntityModel.Reason" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
