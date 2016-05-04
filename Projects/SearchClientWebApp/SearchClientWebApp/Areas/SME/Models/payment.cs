@@ -15,9 +15,7 @@ namespace SearchClientWebApp.Areas.SME.Models
 
 
         public decimal amount  {  get { return  Amount2pay(AccountID); } }
-
-
-        public decimal totalpaid { get { return GetTotalPaid(AccountID); } }
+       public decimal totalpaid { get { return GetTotalPaid(AccountID); } }
 
         public decimal PaymentAmount { get; set; }
 

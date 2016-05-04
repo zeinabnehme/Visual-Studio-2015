@@ -1,0 +1,91 @@
+﻿@model IEnumerable<SearchClientWebApp.Areas.SME.Models.CustomRec>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p>
+    @Html.ActionLink("Create New", "Index","RecSearch")
+</p>
+<h2>Active Recovery</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            CustomerID
+        </th>
+        <th>
+            Date
+        </th>
+       
+        <th>
+            AccountID
+        </th>
+        <th>
+            CollOrLegal
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            TypeFollowup
+        </th>
+        <th>
+            Amount
+        </th>
+        <th>
+            totalpaid
+        </th>
+        <th>
+            Due
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.detail.displayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detail.customerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfTransfer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account_id)
+        </td>
+                
+        <td>
+            @Html.DisplayFor(modelItem => item.rec_lookupvalue.lookupValueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rec_lookupvalue1.lookupValueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rec_lookupvalue2.lookupValueName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalpaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Due)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Account_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Account_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Account_id })
+            @Html.ActionLink("AddRepayment", "create","Payment", new { id = item.Account_id },null)
+
+
+        </td>
+    </tr>
+}
+
+</table>

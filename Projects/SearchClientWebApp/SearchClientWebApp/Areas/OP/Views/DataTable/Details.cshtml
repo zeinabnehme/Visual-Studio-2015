@@ -1,0 +1,273 @@
+﻿@model SearchClientWebApp.Models.CustomerDetail.SummaryModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.DISPLAY_NAME)</h4>
+    <hr /> @Model.customer_state.lookup_value
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Mifos CustomerID
+        </dt>
+
+        <dd>
+            @Model.GLOBAL_CUST_NUM
+        </dd>
+        <dt>
+            DisplayName
+        </dt>
+
+        <dd>
+            @Model.DISPLAY_NAME
+        </dd>
+
+        <dt>
+            Office
+        </dt>
+        <dd>
+            @Model.office.DISPLAY_NAME;
+        </dd>
+
+        <dt>
+            Old MIS ID
+        </dt>
+
+        <dd>
+            @Model.OldMIS
+        </dd>
+
+        <dt>
+            ClientType
+        </dt>
+
+        <dd>
+            @Model.DISCRIMINATOR
+        </dd>
+
+        <dt>
+            LA Name
+        </dt>
+
+        <dd>
+            @Model.personnel.DISPLAY_NAME
+        </dd>
+
+        <dt>
+            MotherName
+        </dt>
+
+        <dd>
+            @Model.MotherName
+        </dd>
+        @if (User.IsInRole("ERP_Search_Phone"))
+{
+    <dt>
+        PhoneNb
+    </dt>
+
+    <dd>
+        @Model.customerDetail.PHONE_NUMBER
+    </dd>
+}
+       
+        <dt>
+            Address
+        </dt>
+
+        <dd>
+            @Model.Address
+        </dd>
+
+        <dt>
+            DateOFbirth
+        </dt>
+
+        <dd>
+            @Model.DATE_OF_BIRTH
+        </dd>
+        <dt>
+            GovID
+        </dt>
+
+        <dd>
+            @Model.GOVERNMENT_ID
+        </dd>
+        <dt>
+            MotherName
+        </dt>
+
+        <dd>
+            @Model.MotherName
+        </dd>
+
+        @*<dt>
+            Citizen
+        </dt>
+
+        <dd>
+            @Model.customer_detail.CITIZENSHIP
+        </dd>*@
+        @*<dt>
+                Activity
+            </dt>
+
+            <dd>
+                @Model.customer_detail.lookup_value.
+            </dd>
+            <dt>
+                Gender
+            </dt>
+
+            <dd>
+                @Model.customer_detail.lookup_value1.LOOKUP_NAME
+            </dd>*@
+        </dl>
+    <h3> Actives Loans  </h3>
+
+    <hr />
+
+    <table class="table-bordered">
+        <tr>
+            <th>
+                Office
+            </th>
+            <th>
+                accoundId
+            </th>
+            <th> State </th>
+            <th>
+                PersonnelId
+            </th>
+
+            <th> closedDate</th>
+        </tr>
+
+
+
+        @foreach (var item3 in Model.accounts)
+            {
+            <tr>
+                <td>
+                    <p>
+                        @item3.office.DISPLAY_NAME
+                    </p>
+                </td>
+
+                <td>
+
+
+                    <p>
+                        @item3.ACCOUNT_ID
+                    </p>
+
+
+                </td>
+
+                <td>
+                    <p>
+                        @item3.account_state.lookup_value.LOOKUP_NAME
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        @item3.personnel.DISPLAY_NAME
+                    </p>
+                </td>
+
+                <td>
+                    <p>
+                        @item3.CLOSED_DATE
+                    </p>
+                </td>
+
+
+
+
+            </tr>
+            }
+
+
+    </table>
+    <hr />
+
+    <h3> Closed Loans </h3>
+
+    <hr />
+
+    <table class="table-bordered">
+        <tr>
+            <th>
+                Office
+            </th>
+            <th>
+                accoundId
+            </th>
+            <th> State </th>
+            <th>
+                PersonnelId
+            </th>
+
+            <th> closedDate</th>
+           
+        </tr>
+
+
+
+        @foreach (var item3 in Model.ClosedAccounts)
+            {
+            <tr>
+                <td>
+                    <p>
+                        @item3.office.DISPLAY_NAME
+                    </p>
+                </td>
+
+                <td>
+
+
+                    <p>
+                        @item3.ACCOUNT_ID
+                    </p>
+
+
+                </td>
+
+                <td>
+                    <p>
+                        @item3.account_state.lookup_value.LOOKUP_NAME
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        @item3.personnel.DISPLAY_NAME
+                    </p>
+                </td>
+
+                <td>
+                    <p>
+                        @item3.CLOSED_DATE
+                    </p>
+                </td>
+
+               
+
+                |
+
+
+            </tr>
+        }
+
+    </table>
+
+
+      </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.CUSTOMER_ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>

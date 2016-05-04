@@ -20,8 +20,9 @@ namespace SearchClientWebApp.Areas.SME.Models
         public virtual rec_lookupvalue rec_lookupvalue1 { get; set; }
         public virtual rec_lookupvalue rec_lookupvalue2 { get; set; }
         public customCustomer detail { get { return GetCust(Account_id); } }
-        public payment pay { get; set; }
-        //public int State { get; set; }
+        public decimal totalpaid { get { return GetTotalPaid(Account_id); } }
+
+       public decimal Due { get { return GetDue(amount,totalpaid); } }
 
         public customCustomer GetCust(int acc)
     {
@@ -37,9 +38,40 @@ namespace SearchClientWebApp.Areas.SME.Models
 
         return detail;
     }
-   }
 
-    public class customCustomer
+
+        public Decimal GetTotalPaid(int accountid)
+        {
+            //    List<account> AAccounts = new List<account>();
+
+            using (mifosEntitiesConnection db = new mifosEntitiesConnection())
+            {
+
+                var totalPaid = Convert.ToDecimal(db.rec_payment.Where(p => p.AccountID == accountid).Select(p => p.PaymentAmount).DefaultIfEmpty(0).Sum());
+
+                return totalPaid;
+
+            }
+        }
+
+   
+
+    public Decimal GetDue(decimal amount, decimal Paid)
+    {
+        //    List<account> AAccounts = new List<account>();
+
+
+
+        var x = amount - Paid;
+
+            return x;
+
+        
+    }
+ }
+
+
+public class customCustomer
         {
         public int? customerID;
         public string displayName;

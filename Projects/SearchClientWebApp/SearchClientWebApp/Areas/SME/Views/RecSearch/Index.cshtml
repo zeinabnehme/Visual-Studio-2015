@@ -1,0 +1,116 @@
+﻿@model IList<SearchClientWebApp.Areas.SME.Models.CustomerBrefRec.GroupSummaryModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    
+    <p>
+        Find by name: @Html.TextBox("SearchStr")
+        <input type="submit" value="Search" />
+    </p>
+}
+@section Scripts {
+   <script type="text/javascript">
+    $(document).ready( function () {
+        $('#myTable').dataTable({
+            "paging": false,
+        });
+} );     </script>
+
+    }
+<table class="table" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Customer ID
+            </th>
+            <th>
+                Global ID
+            </th>
+
+            <th>
+                Name
+            </th>
+                       <th> Mother Name</th>
+            @*<th>
+         Address
+     </th>*@
+     
+     @*<th> ActiveLoans </th>*@
+
+             
+            <th>
+                Office
+            </th>
+
+            <th>
+                link
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CUSTOMER_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GLOBAL_CUST_NUM)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DISPLAY_NAME)
+                </td>
+
+<td> @item.MotherName </td>
+               
+
+
+                
+
+
+                         
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.office.DISPLAY_NAME)
+                        </td>
+
+
+                <td>
+                   
+                        @Html.ActionLink("Details", "Details", new { id = item.CUSTOMER_ID }) |
+
+                               
+                            
+                  
+
+                </td>
+                   
+                    </tr>
+
+                }
+            </tbody>
+
+
+
+        </table>
+
+
+        <div>
+            @Html.ActionLink("Previous", "Index", new { pageNumber = ViewBag.PageNumber - 1, SearchStr = ViewBag.SearchStr })
+            @Html.ActionLink("Next", "Index", new { pageNumber = ViewBag.PageNumber + 1, SearchStr = ViewBag.SearchStr })
+
+        </div>
+        <div>
+            @Html.ViewBag.PageNumber
+        </div>

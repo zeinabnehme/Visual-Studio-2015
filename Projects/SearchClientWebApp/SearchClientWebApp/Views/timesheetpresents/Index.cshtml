@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SearchClientWebApp.timesheetpresent>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPresent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Approved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.employee.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timesheetyear2016.DayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timesheetreason.ReasonName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPresent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.employee.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timesheetyear2016.DayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timesheetreason.ReasonName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.attendanceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.attendanceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.attendanceID })
+        </td>
+    </tr>
+}
+
+</table>
